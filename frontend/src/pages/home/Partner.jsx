@@ -1,0 +1,67 @@
+import Image from 'next/image';
+import React from 'react';
+import Marquee from 'react-fast-marquee';
+import p1 from "@/components/assests/Fiat.jpg";
+import p2 from "@/components/assests/ford.jpg";
+import p3 from "@/components/assests/bmw.jpg";
+import p4 from "@/components/assests/Hyu.jpg";
+// import p5 from "@/components/assests/Mahindra.jpg";
+import p6 from "@/components/assests/Ni.png";
+import p7 from "@/components/assests/Renault.jpg";
+import p8 from "@/components/assests/Tata.jpg";
+import p9 from "@/components/assests/psa.jpg";
+
+const Partner = () => {
+  return (
+    <div className='mt-6 py-6'>
+      <div className='flex justify-center items-center mb-7 p-5'>
+        <h1 className='text-3xl md:text-4xl lg:text-5xl font-medium px-4 md:px-12 font-dm-sans lg:px-3 text-[#0d1039] text-center'>
+          Hiring Companies
+        </h1>
+      </div>
+      <div className=' mb-4 bg-white rounded'>
+        <div className='py-6'>
+          <Marquee
+            speed={80}
+            pauseOnHover={true}
+            gradientColor='blue'
+            className='flex items-center'
+          >
+            <div className="px-4">
+              <Image src={p1} alt='Partner 1' className='w-24 h-24 sm:w-32 sm:h-32 md:w-32 md:h-32 lg:w-32 lg:h-32 rounded-full bg-white'/>
+            </div>
+            <div className="px-4">
+              <Image src={p2} alt='Partner 2' className='w-24 h-24 sm:w-32 sm:h-32 md:w-32 md:h-32 lg:w-32 lg:h-32 rounded-full bg-white'/>
+            </div>
+            <div className="px-4">
+              <Image src={p3} alt='Partner 3' className='w-24 h-24 sm:w-32 sm:h-32 md:w-32 md:h-32 lg:w-32 lg:h-32 rounded-full bg-white'/>
+            </div>
+            <div className="px-4">
+              <Image src={p4} alt='Partner 4' className='w-24 h-24 sm:w-32 sm:h-32 md:w-32 md:h-32 lg:w-32 lg:h-32 rounded-full bg-white'/>
+            </div>
+            <div className="px-4">
+              <Image src={p2} alt='Partner 5' className='w-24 h-24 sm:w-32 sm:h-32 md:w-32 md:h-32 lg:w-32 lg:h-32 rounded-full bg-white'/>
+            </div>
+            <div className="px-4">
+              <Image src={p6} alt='Partner 6' className='w-24 h-24 sm:w-32 sm:h-32 md:w-32 md:h-32 lg:w-32 lg:h-32 rounded-full bg-white'/>
+            </div>
+            <div className="px-4">
+              <Image src={p7} alt='Partner 7' className='w-24 h-24 sm:w-32 sm:h-32 md:w-32 md:h-32 lg:w-32 lg:h-32 rounded-xl bg-white'/>
+            </div>
+            <div className="px-4">
+              <Image src={p8} alt='Partner 8' className='w-24 h-24 sm:w-32 sm:h-32 md:w-32 md:h-32 lg:w-32 lg:h-32 rounded-full bg-white'/>
+            </div>
+            <div className="px-4">
+              <Image src={p9} alt='Partner 9' className='w-24 h-24 sm:w-32 sm:h-32 md:w-32 md:h-32 lg:w-32 lg:h-32 rounded-full bg-white'/>
+            </div>
+            <div className="px-4">
+              <Image src={p6} alt='Partner 10' className='w-24 h-24 sm:w-32 sm:h-32 md:w-32 md:h-32 lg:w-32 lg:h-32 rounded-full bg-white'/>
+            </div>
+          </Marquee>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Partner;

@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+
+@theme inline {
+   --font-dm-sans: var(--font-dm-sans);
+}
+
+
+/* home */
+
+.bg {
+  background-image: url("../components/assests/home.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* count bg */
+
+.count{
+  background-image: url("../components/assests/count.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+
+/* about */
+
+.about{
+  background-image: url("../components/assests/ab.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* admission */
+
+.admission{
+  background-image: url("../components/assests/admission.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.line{
+  background-image: url("../components/assests/linewave.jpg");
+  background-position:center;
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+
+
+/* contact */
+
+.contact{
+  background-image: url("../components/assests/bg-contact.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+
+.slick-dots li button:before {
+  color: #45D2FF !important;
+  opacity: 0.6;
+}
+.slick-dots li.slick-active button:before {
+  color: #45D2FF !important;
+  opacity: 1;
+}
