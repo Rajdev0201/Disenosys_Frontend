@@ -13,11 +13,13 @@ import p9 from "@/components/assests/psa.jpg";
 
 const Partner = () => {
   return (
-    <div className='mt-6 py-6'>
+    <div className='mt-6 py-6 font-dm-sans'>
       <div className='flex justify-center items-center mb-7 p-5'>
-        <h1 className='text-3xl md:text-4xl lg:text-5xl font-medium px-4 md:px-12 font-dm-sans lg:px-3 text-[#0d1039] text-center'>
+        <header>
+        <h2 className='text-3xl md:text-4xl lg:text-5xl font-medium px-4 md:px-12 font-dm-sans lg:px-3 text-[#0d1039] text-center'>
           Hiring Companies
-        </h1>
+        </h2>
+        </header>
       </div>
       <div className=' mb-4 bg-white rounded'>
         <div className='py-6'>

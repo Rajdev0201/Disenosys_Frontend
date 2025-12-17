@@ -6,21 +6,21 @@ import Review from "@/pages/description/Review";
 import Tabs from "@/pages/description/Tab";
 import CourseHeader from "./Header";
 
-const CourseDetails = () => {
-  const [activeTab, setActiveTab] = useState("overview");
 
+const CourseDetails = ({slug}) => {
+  const [activeTab, setActiveTab] = useState("overview");
   return (
     <div className="w-full min-h-screen">
-      <CourseHeader/>
+      <CourseHeader slug={slug}/>
 
       {/* Tabs */}
       <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
-
-      <div className="px-24 py-6">
-        {activeTab === "overview" && <Overview />}
-        {activeTab === "list" && <CourseList />}
+      <div className="px-4 lg:px-24 py-6">
+        {activeTab === "overview" && <Overview slug={slug} />}
+        {activeTab === "list" && <CourseList slug={slug}/>}
         {activeTab === "reviews" && <Review />}
       </div>
+
     </div>
   );
 }

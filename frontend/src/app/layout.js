@@ -1,6 +1,8 @@
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import LayoutWrapper from "@/app/LayoutWrapper.jsx";
+import { Providers } from "@/components/Redux/Provide";
+import { ToastProvider } from "@/components/context/ToastContext";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -16,7 +18,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${dmSans.variable} antialiased`}>
+        <ToastProvider>
+         <Providers>
         <LayoutWrapper>{children}</LayoutWrapper>
+        </Providers>
+        </ToastProvider>
       </body>
     </html>
   );

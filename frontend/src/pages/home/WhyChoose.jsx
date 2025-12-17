@@ -1,8 +1,10 @@
+"use client"
 import Button from "@/components/custom/Button";
 import Image from "next/image";
 import React from "react";
 import why from "@/components/assests/why.jpg";
 import { MoveRight, Tv, Briefcase, Layers, CalendarClock } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const data = [
   {
@@ -32,7 +34,13 @@ const data = [
 ];
 
 const WhyChoose = () => {
+  const nav = useRouter();
+
+  const handlePush = () => {
+    nav.push("/scholarship")
+  }
   return (
+    <section>
     <div className="bg-[#101359] font-dm-sans">
       <div className="px-4 md:px-8 lg:px-32 py-12">
         
@@ -42,14 +50,16 @@ const WhyChoose = () => {
         </span>
 
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-          <h1 className="text-white text-2xl sm:text-3xl lg:text-4xl font-bold md:w-3/4 leading-snug">
+          <h2 className="text-white text-2xl sm:text-3xl lg:text-4xl font-bold md:w-3/4 leading-snug">
             Empowering Your Career with
             <span className="text-[#45D2FF]">
               {" "}Expert-Led, Practical, and Flexible Learning
             </span>
-          </h1>
+          </h2>
+
           <Button
             text="Get started"
+            onClick={handlePush}
             icon={<MoveRight size={18} color="white" />}
             className="flex items-center justify-center gap-2 bg-[linear-gradient(to_right,#45D2FF,#009EE0)] px-6 py-3 font-bold rounded-3xl text-white hover:cursor-pointer text-sm sm:text-base md:text-md"
           />
@@ -81,6 +91,7 @@ const WhyChoose = () => {
         </div>
       </div>
     </div>
+    </section>
   );
 };
 

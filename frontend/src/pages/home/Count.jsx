@@ -35,6 +35,7 @@ const Count = () => {
   }, []);
 
   return (
+    <section>
     <div
       ref={sectionRef}
       className="count font-dm-sans text-white bg-gradient-to-r from-[#101359] to-[#2229BF] py-12 mb-20"
@@ -42,15 +43,16 @@ const Count = () => {
       <div className="container-md mx-auto grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-8 text-center xl:px-16">
         {stats.map((stat, i) => (
           <div key={i}>
-            <h1 className="text-3xl sm:text-4xl font-bold">
+            <h2 className="text-3xl sm:text-4xl font-bold">
               {visible ? <Counter end={stat.value} /> : 0}
               {stat.suffix}
-            </h1>
-            <h4 className="text-sm sm:text-md font-light mt-2">{stat.label}</h4>
+            </h2>
+            <p className="text-sm sm:text-md font-light mt-2">{stat.label}</p>
           </div>
         ))}
       </div>
     </div>
+    </section>
   );
 };
 

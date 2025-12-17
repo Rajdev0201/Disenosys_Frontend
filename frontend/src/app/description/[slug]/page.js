@@ -1,19 +1,26 @@
 import Banner from "@/pages/description/Banner";
 import CourseDetails from "@/pages/description/CourseDetails";
-import CourseList from "@/pages/description/CourseList";
-import Overview from "@/pages/description/Overview";
-import Review from "@/pages/description/Review";
-import Tabs from "@/pages/description/Tab";
 
 
 
 
+export async function generateMetadata ({params}) {
+    const { slug } = await params;
+    const decodedSlug = decodeURIComponent(slug);
+    return {
+        title:decodedSlug,
+        description: `Comprehensive course covering essential concepts, practical skills, and industry insights to enhance your expertise. ${decodedSlug}`
+      }
+}
 
-export default function DescriptionPage(){
+
+export default async function DescriptionPage({params}){
+    const {slug} = await params;
+    const decodedSlug = decodeURIComponent(slug);
     return(
         <main>
-            <Banner/>
-            <CourseDetails/>
+            <Banner slug={decodedSlug}/>
+            <CourseDetails slug={decodedSlug}/>
         </main>
     )
 }

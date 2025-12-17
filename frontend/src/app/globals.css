@@ -61,7 +61,56 @@
   background-size: cover;
 }
 
+/* signup */
+.bg-signup{
+  background-image: url("../components/assests/signup.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/* 
+scholarship */
+.scholar-blog{
+  background-image: url("../components/assests/bg-scholar.jpg");
+  background-position:right;
+  background-repeat: no-repeat;
+  background-size:cover;
+}
 
+.scholar{
+  background-image: url("../components/assests/bg-scholar.jpg");
+  background-position:center;
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+
+.course-bg{
+  background-image: url("../components/assests/course-bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.blog{
+   background-image: url("../components/assests/blog.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.privacy{
+  background-image: url("../components/assests/privacy.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.terms{
+  background-image: url("../components/assests/terms.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 .slick-dots li button:before {
   color: #45D2FF !important;

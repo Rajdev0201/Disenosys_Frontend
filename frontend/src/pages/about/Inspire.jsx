@@ -19,14 +19,15 @@ const Inspire = () => {
 
       {/* Right Side - Text Content */}
       <div className="flex flex-col space-y-4 md:space-y-6 text-center md:text-left">
+        <header>
         <span className="text-xs sm:text-sm md:text-base font-bold tracking-wide text-center lg:text-start">
           MEET THE FOUNDER
         </span>
 
-        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#45D2FF] leading-snug text-center lg:text-start">
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#45D2FF] leading-snug text-center lg:text-start">
           <span className="text-[#101359]">Inspiring Leadership, </span>
           Behind Disenosys
-        </h1>
+        </h2>
 
         <p className="text-xs sm:text-sm md:text-base lg:text-md font-medium leading-6 sm:leading-7 text-[#8C8C8C]">
           We are Disenosys, a leading EdTech platform established in 2019, specializing in industry-focused training for the Indian Automotive Industry. Our Post Graduate courses in Automotive Body Design cover 
@@ -38,6 +39,8 @@ const Inspire = () => {
          With a curriculum designed by industry experts and strong partnerships with automotive OEMs,
          we offer 100% placement assistance, empowering engineers to thrive in a competitive job market.
         </p>
+
+        </header>
       </div>
     </div>
   </div>

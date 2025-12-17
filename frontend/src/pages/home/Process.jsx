@@ -28,19 +28,22 @@ const steps = [
 
 const Process = () => {
   return (
+    <section>
     <div className="flex flex-col justify-center items-center font-dm-sans py-16 px-4 md:px-8 lg:px-16">
       {/* Section Heading */}
-      <span className="text-sm font-bold tracking-wide text-[#101359] mb-3">
+      <header>
+      <span className="block text-center text-sm font-bold tracking-wide text-[#101359] mb-3">
         OUR WORK PROCESS
       </span>
-      <h1 className="text-[#101359] text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-center">
+      <h2 className="text-[#101359] text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-center">
         Our Proven{" "}
         <span className="text-[#45D2FF]">Placement Process</span>
-      </h1>
+      </h2>
       <p className="text-sm sm:text-base md:text-lg font-medium leading-7 text-center max-w-2xl text-[#8C8C8C] mb-12">
         Our courses offer expert-led training and hands-on practice. Equip
         yourself with the skills and knowledge needed to excel in your field.
       </p>
+      </header>
 
       {/* Steps */}
       <div className="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-6 lg:gap-3">
@@ -69,6 +72,7 @@ const Process = () => {
         ))}
       </div>
     </div>
+    </section>
   );
 };
 

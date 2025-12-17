@@ -4,7 +4,7 @@ import about from "@/components/assests/about.jpg";
 // import Toast from "@/components/custom/Toast";
 const About = () => {
   return (
-    <section>
+<section>
     <div className="px-4 md:px-8 lg:px-28 py-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         
@@ -18,12 +18,13 @@ const About = () => {
         </div>
 
         {/* Right Side - Text Content */}
-        <div className="flex flex-col space-y-4 font-dm-sans text-center md:text-left">
-          <span className="text-sm font-bold tracking-wide">ABOUT US</span>
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#45D2FF] leading-snug">
+        <div className="flex flex-col font-dm-sans text-center md:text-left">
+          <header className="space-y-4 ">
+          <span className="block  text-sm font-bold tracking-wide">ABOUT US</span>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#45D2FF] leading-snug">
             <span className="text-[#101359]">Transforming</span> Engineers into
             Industry Leaders
-          </h1>
+          </h2>
           <p className="text-sm sm:text-base md:text-md font-medium leading-7 text-[#8C8C8C]">
             We are Disenosys, a leading EdTech platform transforming careers
             since 2019. Specializing in the Indian Automotive Industry, we
@@ -35,32 +36,32 @@ const About = () => {
             partnerships with Automotive OEMs, we proudly provide 100% placement
             assistance with top companies.
           </p>
-
+         </header>
           {/* Stats Section */}
           <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-8 sm:gap-16 pt-4">
             <div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-[#101359]">
+              <h3 className="text-2xl sm:text-3xl font-bold text-[#101359]">
                 20+
-              </h2>
-              <h4 className="text-sm sm:text-md font-medium text-[#8C8C8C]">
+              </h3>
+              <p className="text-sm sm:text-md font-medium text-[#8C8C8C]">
                 Expert Mentors
-              </h4>
+              </p>
             </div>
             <div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-[#101359]">
+              <h3 className="text-2xl sm:text-3xl font-bold text-[#101359]">
                 500+
-              </h2>
-              <h4 className="text-sm sm:text-md font-medium text-[#8C8C8C]">
+              </h3>
+              <p className="text-sm sm:text-md font-medium text-[#8C8C8C]">
                 Happy Students
-              </h4>
+              </p>
             </div>
             <div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-[#101359]">
+              <h3 className="text-2xl sm:text-3xl font-bold text-[#101359]">
                 99%
-              </h2>
-              <h4 className="text-sm sm:text-md font-medium text-[#8C8C8C]">
+              </h3>
+              <p className="text-sm sm:text-md font-medium text-[#8C8C8C]">
                 Successful Placements
-              </h4>
+              </p>
             </div>
           </div>
         </div>

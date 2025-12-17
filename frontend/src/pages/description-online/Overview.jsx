@@ -2,15 +2,15 @@
 import { CircleCheck, GraduationCap, LibraryBig, MonitorSmartphone } from "lucide-react";
 import React from "react";
 
-const Overview = () => {
+const Overview = ({course}) => {
   return (
     <section className="space-y-4 font-dm-sans">
       <h2 className="text-xl font-semibold text-[#101359]">Course Description</h2>
       <p className="text-[#8C8C8C] leading-relaxed text-sm lg:text-md font-medium">
-       Solid Model Remastering is a process in automotive design and engineering where an existing 3D CAD model is updated or revised to incorporate new changes or improvements.
-      </p>
+        {course?.description}
+       </p>
     <div className="grid lg:grid-cols-2 gap-6">
-         <div className="bg-white shadow-lg space-y-3 px-6 py-5 w-full  xl:w-2/4 rounded-2xl">
+         <div className="bg-white shadow-lg space-y-3 px-6 py-5 w-full  rounded-2xl">
             <h4 className="text-2xl font-semibold text-[#101359]">Online Meet Course</h4>
             <p className="text-[#8C8C8C] leading-relaxed text-md font-medium">Join live interactive classes with expert trainers, get real-time guidance, 
             and work on industry-oriented projects in a collaborative learning environment.</p>
@@ -23,7 +23,7 @@ const Overview = () => {
                           <li className="flex items-center gap-3"><GraduationCap size={20}  className=" text-[#101359]"/>Certification on completion</li>
                   </ul>
          </div>
-            <div className="bg-white shadow-lg space-y-3 px-6 py-5 w-full xl:w-2/4 rounded-2xl">
+            <div className="bg-white shadow-lg space-y-3 px-6 py-5 w-full  rounded-2xl">
             <h4 className="text-2xl font-semibold text-[#101359]">Recorded Sessions</h4>
             <p className="text-[#8C8C8C] leading-relaxed text-md font-medium">
                 Learn at your own pace with high-quality recorded video sessions. Access the course anytime, anywhere, and revisit lessons as needed for complete flexibility.

@@ -8,7 +8,7 @@ const Tabs = ({ activeTab, setActiveTab }) => {
   ];
 
   return (
-    <div className="px-24 mt-6">
+    <div className="px-4 lg:px-24 mt-6">
       <div className="flex space-x-6">
         {tabs.map((tab) => (
           <button

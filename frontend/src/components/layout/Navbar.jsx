@@ -1,23 +1,48 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "@/components/assests/logo.jpg";
 import Button from "../custom/Button";
 import BookDemoModal from "../modal/BookDemo";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
+import UserDropDown from "./UserDropDown";
+import { ProfileLoader } from "../utils/Loader";
+
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const nav = useRouter();
+  const path = usePathname();
+  const {data,loading} = useSelector((state) => state.user);
+ 
 
+
+  const handlePushLogin = ( ) => {
+    nav.push("/signup")
+  }
   const navItems = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Course", href: "/course" },
     { name: "Admission", href: "/admission"},
-    { name: "Blog", href: "#" },
+    { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ];
+
+
+  // useEffect(() => {
+  // const user = "";
+  // if(!user){
+  //   router.push("/signup")
+  // }
+  // },[])
+
+  const handleClick =  () => {
+    nav.push("/signup")
+  }
 
   return (
     <nav className="fixed w-full z-50 bg-white top-10 left-0 shadow-sm">
@@ -30,12 +55,16 @@ const Navbar = () => {
           <Button
             text="Book a Demo"
             onClick={() => setIsOpen(true)}
-            className="hidden lg:block bg-[linear-gradient(to_right,#2229BF,#101359)] px-4 py-2 font-bold rounded-lg text-white font-dm-sans hover:cursor-pointer"
+            className="hidden lg:block bg-[linear-gradient(to_right,#101359,#2229BF)] lg:px-2 xl:px-4 py-2 font-bold rounded-lg text-white font-dm-sans hover:cursor-pointer"
           />
+          {!data?.userName ? 
           <Button
             text="Sign Up"
+            onClick={handlePushLogin}
             className="hidden lg:block bg-[linear-gradient(to_right,#0077B3,#45D2FF)] px-8 py-2 font-bold rounded-lg text-white font-dm-sans hover:cursor-pointer"
           />
+          : !loading ? <UserDropDown userData={data} loading={loading} className="hidden lg:block"/> : <ProfileLoader/>
+          }
 
           {/* Mobile Toggle */}
           <button
@@ -78,7 +107,8 @@ const Navbar = () => {
             <Link
               key={index}
               href={item.href}
-              className="block py-2 px-3 rounded-sm font-dm-sans text-base lg:text-md font-[400] text-[#000000] hover:text-[#101359]"
+              className={`block py-2 px-3 rounded-sm font-dm-sans text-base lg:text-md font-[400] hover:text-[#101359] 
+                ${path === item.href ? "text-[#0910e2]" :"text-[#000000]" }`}
             >
               {item.name}
             </Link>
@@ -94,7 +124,9 @@ const Navbar = () => {
               <li key={index}>
                 <Link
                   href={item.href}
-                  className="block py-2 px-3 rounded-sm font-dm-sans text-base font-[400] text-[#000000] hover:text-[#101359]"
+                  onClick={() => setMenuOpen(false)}
+                  className={`block py-2 px-3 rounded-sm font-dm-sans text-base font-[400] hover:text-[#101359]
+                        ${path === item.href ? "text-[#0910e2]" :"text-[#000000]" }`}
                 >
                   {item.name}
                 </Link>
@@ -102,15 +134,19 @@ const Navbar = () => {
             ))}
 
             {/* Buttons visible in mobile */}
-            <div className="flex flex-col gap-3 mt-4">
+            <div className="flex flex-col gap-3 mt-0">
+              {!data?.userName ? 
+          <Button
+            text="Sign Up"
+            onClick={handlePushLogin}
+            className="hidden lg:block bg-[linear-gradient(to_right,#0077B3,#45D2FF)] px-8 py-2 font-bold rounded-lg text-white font-dm-sans hover:cursor-pointer"
+          />
+          : <UserDropDown userData={data} loading={loading} className="block lg:hidden"/>
+          }
               <Button
                 text="Book a Demo"
                 onClick={() => setIsOpen(true)}
                 className="bg-[linear-gradient(to_right,#2229BF,#101359)] px-4 py-2 font-bold rounded-lg text-white font-dm-sans hover:cursor-pointer"
-              />
-              <Button
-                text="Sign Up"
-                className="bg-[linear-gradient(to_right,#0077B3,#45D2FF)] px-6 py-2 font-bold rounded-lg text-white font-dm-sans hover:cursor-pointer"
               />
             </div>
           </ul>

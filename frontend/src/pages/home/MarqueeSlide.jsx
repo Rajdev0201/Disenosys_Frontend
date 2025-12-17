@@ -35,7 +35,6 @@ const companies = [
 const MarqueeView = () => {
   return (
     <div className="flex flex-col mt-8 space-y-6 mb-16">
-  
       <Marquee speed={80} pauseOnHover={true} direction="left" gradient={false} className="flex items-center">
         {companies.map((company) => (
           <div
@@ -52,8 +51,6 @@ const MarqueeView = () => {
           </div>
         ))}
       </Marquee>
-
-    
     </div>
   );
 };

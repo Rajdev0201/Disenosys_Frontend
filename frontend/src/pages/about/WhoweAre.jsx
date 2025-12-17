@@ -19,15 +19,17 @@ const About = () => {
       </div>
 
       {/* Right Side - Text Content */}
-      <div className="flex flex-col space-y-4 md:space-y-6 text-center md:text-left">
+      <div className="flex flex-col md:space-y-6 text-center md:text-left"
+      >
+        <header className="space-y-4">
         <span className="text-xs sm:text-sm md:text-base font-bold tracking-wide text-center lg:text-start">
           WHO WE ARE
         </span>
 
-        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#45D2FF] leading-snug text-center lg:text-start">
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#45D2FF] leading-snug text-center lg:text-start">
           <span className="text-[#101359]">Empowering Engineers, </span>
           Transforming Careers
-        </h1>
+        </h2>
 
         <p className="text-xs sm:text-sm md:text-base lg:text-md font-medium leading-6 sm:leading-7 text-[#8C8C8C]">
           Disenosys is a premier EdTech platform established in 2019, focused on
@@ -46,7 +48,7 @@ const About = () => {
           assistance, empowering engineers to thrive in the evolving automotive
           sector.
         </p>
-
+        </header>
         <div className="flex justify-center lg:justify-start">
           <Button
             text="Explore Now"

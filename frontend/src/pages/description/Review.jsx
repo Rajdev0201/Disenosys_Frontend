@@ -19,14 +19,14 @@ const Review = () => {
   return (
     <div className="font-dm-sans">
       <h2 className="text-xl font-semibold mb-4 text-[#101359]">Course Reviews</h2>
-      <div className="grid grid-cols-12 gap-5">
-      <div className="bg-white rounded-xl shadow p-6 mb-6 col-span-3 flex flex-col items-center justify-center">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+      <div className="bg-white rounded-xl shadow p-6 mb-6 col-span-12 lg:col-span-3 flex flex-col items-center justify-center">
         <p className="text-5xl font-bold">4.8</p>
         <span className="text-[#F8BC24]">★ ★ ★ ★ ★</span>
         <p className="text-gray-500">Course Rating</p>
         </div>
         {/* Rating bars */}
-        <div className="space-y-2 bg-white rounded-xl shadow p-6 mb-6 col-span-9">
+        <div className="space-y-2 bg-white rounded-xl shadow p-6 mb-6 col-span-12 lg:col-span-9">
           {[70, 15, 10, 5, 2].map((percent, i) => (
             <div key={i} className="flex items-center space-x-2">
               <span className="text-sm">{5 - i} ★</span>

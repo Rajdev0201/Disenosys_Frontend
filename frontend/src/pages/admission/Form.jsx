@@ -1,29 +1,47 @@
 "use client"
+import { useToast } from "@/components/context/ToastContext";
 import Button from "@/components/custom/Button";
 import Input from "@/components/custom/Input";
-import Link from "next/link";
+import { API } from "@/components/utils/constant";
+import axios from "axios";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const AdmissionForm = () => {
-  const [form, setForm] = useState({
-    name: "", email: "", phone: "", dob: "", course: "",
-  });
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [mobile, setMobile] = useState("");
+    const [courseName,setCourseName] = useState("");
+    const {showToast} = useToast();
+    const user = useSelector((state) => state.user);
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-  const [alert,setAlert] = useState(false);
-
-  const handleSubmit = (e) => {
-    setAlert(true);
+    const handleSubmit = async (e) => {
     e.preventDefault();
-    // alert("Form submitted!");
-    // backend logic here
+    const data = {name,email,mobile,courseName}
+    try {
+      await axios.post(API + "enrollPost", data,{
+         withCredentials: true,
+      });
+     if (!user) {
+        return showToast(
+          "error",
+          "Please Sign In",
+          "You must sign in before enrolling."
+        );
+      }
+      showToast(
+        "success",
+        "Enrolled Successfully",
+        "Your course has been added!"
+      );
+    } catch (err) {
+      showToast("error",err.response?.data?.message, "Please check you all fields before submitted!");
+    }
   };
 
   return (
     <div className="max-w-4xl mx-auto py-6 px-6 font-garet mb-6">
-        {alert && ( 
+        {/* {alert && ( 
             <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm w-full z-50">
             <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg text-center">
               <h1 className="text-lg font-semibold font-garet">
@@ -34,7 +52,7 @@ const AdmissionForm = () => {
                 </Link>
             </div>
           </div>
-        )}
+        )} */}
       <div className="flex flex-col justify-center items-center font-dm-sans py-3 px-4 md:px-8 lg:px-6">
         {/* Section Heading */}
         <span className="text-sm font-bold tracking-wide text-[#101359] mb-3">
@@ -48,18 +66,30 @@ const AdmissionForm = () => {
         </p>
       </div>
       <form onSubmit={handleSubmit} className="grid gap-6">
-        {["name", "email", "phone", "dob","course"].map((field) => (
           <Input
-            key={field}
-            type={field === "dob" ? "date" : "text"}
-            name={field}
-            placeholder={`Enter your ${field}`}
-            value={form[field]}
-            onChange={handleChange}
-            required
+            type="text"
+             value={name}
+              placeholder="Enter your full name"
+                onChange={(e) => setName(e.target.value)}
           />
-        ))}
-
+           <Input
+            type="email"
+             value={email}
+              placeholder="Enter your full email"
+                onChange={(e) => setEmail(e.target.value)}
+          />
+           <Input
+            type="tel"
+             value={mobile}
+              placeholder="Enter your full mobile"
+              onChange={(e) => setMobile(e.target.value)}
+          />
+           <Input
+            type="text"
+             value={courseName}
+              placeholder="Enter your full courseName"
+              onChange={(e) => setCourseName(e.target.value)}
+          />
         <Button
          text="Submit Application"
           type="submit"
