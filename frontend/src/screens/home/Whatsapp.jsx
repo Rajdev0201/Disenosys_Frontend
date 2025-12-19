@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
 
-export const Whatsapp = () => {
+const Whatsapp = () => {
 
   const sendWhatsAppMessage = () => {
     if (typeof window !== 'undefined') { // Check if window is defined
@@ -30,3 +30,5 @@ export const Whatsapp = () => {
     </div>
   );
 };
+
+export default Whatsapp;

@@ -1,8 +1,8 @@
-import Banner from "@/pages/admission/Banner";
-import AdmissionCourses from "@/pages/admission/Course";
-import AdmissionForm from "@/pages/admission/Form";
-import Process from "@/pages/admission/Process";
-import MarqueeView from "@/pages/home/MarqueeSlide";
+import Banner from "@/screens/admission/Banner";
+import AdmissionCourses from "@/screens/admission/Course";
+import AdmissionForm from "@/screens/admission/Form";
+import Process from "@/screens/admission/Process";
+import MarqueeView from "@/screens/home/MarqueeSlide";
 
 
 export const metadata = () => { 

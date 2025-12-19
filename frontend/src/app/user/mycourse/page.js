@@ -1,4 +1,4 @@
-import MyCourse from "@/pages/userDashboard/MyCourse";
+import MyCourse from "@/screens/userDashboard/MyCourse";
 
 
 

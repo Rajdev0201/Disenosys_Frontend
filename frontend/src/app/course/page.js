@@ -1,9 +1,9 @@
-import About from "@/pages/course/About";
-import Banner from "@/pages/course/Banner";
-import Mentor from "@/pages/course/Mentor";
-import ProgramWeOffer from "@/pages/course/ProgramWeOffer";
-import Testimonials from "@/pages/course/Testimonials";
-import Partner from "@/pages/home/Partner";
+import About from "@/screens/course/About";
+import Banner from "@/screens/course/Banner";
+import Mentor from "@/screens/course/Mentor";
+import ProgramWeOffer from "@/screens/course/ProgramWeOffer";
+import Testimonials from "@/screens/course/Testimonials";
+import Partner from "@/screens/home/Partner";
 
 
 

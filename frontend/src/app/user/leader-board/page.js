@@ -1,4 +1,4 @@
-import MainLeaderBoard from "@/pages/userDashboard/MainLeaderBoard";
+import MainLeaderBoard from "@/screens/userDashboard/MainLeaderBoard";
 
 
 

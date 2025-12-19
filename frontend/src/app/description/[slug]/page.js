@@ -1,5 +1,5 @@
-import Banner from "@/pages/description/Banner";
-import CourseDetails from "@/pages/description/CourseDetails";
+import Banner from "@/screens/description/Banner";
+import CourseDetails from "@/screens/description/CourseDetails";
 
 
 

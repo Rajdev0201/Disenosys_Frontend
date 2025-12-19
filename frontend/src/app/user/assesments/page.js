@@ -1,4 +1,4 @@
-import Assesments from "@/pages/userDashboard/Assesments";
+import Assesments from "@/screens/userDashboard/Assesments";
 
 
 

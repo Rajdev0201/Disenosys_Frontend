@@ -1,4 +1,4 @@
-import QuizResult from "@/pages/userDashboard/QuizResult";
+import QuizResult from "@/screens/userDashboard/QuizResult";
 
 
 

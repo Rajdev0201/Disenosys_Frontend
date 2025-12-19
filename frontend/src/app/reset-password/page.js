@@ -1,4 +1,5 @@
-import Reset from "@/pages/auth/Reset";
+import Reset from "@/screens/auth/Reset";
+import { Suspense } from "react";
 
 
 
@@ -7,7 +8,9 @@ import Reset from "@/pages/auth/Reset";
 export default function ResetPassword(){
     return(
         <main>
+             <Suspense fallback={<div className="text-center mt-20">Loading...</div>}>
             <Reset/>
+            </Suspense>
         </main>
     )
 }

@@ -1,4 +1,4 @@
-import ChatBot from "@/pages/userDashboard/PolicyBot";
+import ChatBot from "@/screens/userDashboard/PolicyBot";
 
 
 

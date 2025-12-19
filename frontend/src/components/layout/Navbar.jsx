@@ -6,9 +6,10 @@ import Button from "../custom/Button";
 import BookDemoModal from "../modal/BookDemo";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import UserDropDown from "./UserDropDown";
 import { ProfileLoader } from "../utils/Loader";
+import { getProfile } from "../Redux/actions/auth";
 
 
 const Navbar = () => {
@@ -17,8 +18,12 @@ const Navbar = () => {
   const nav = useRouter();
   const path = usePathname();
   const {data,loading} = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+    
+     useEffect(() => {
+     dispatch(getProfile());
+   },[dispatch])
  
-
 
   const handlePushLogin = ( ) => {
     nav.push("/signup")

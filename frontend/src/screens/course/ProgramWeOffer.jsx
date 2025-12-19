@@ -1,8 +1,8 @@
 "use client";
 import Button from "@/components/custom/Button";
 import React, { useState } from "react";
-import Pg from "@/pages/course/Pg";
-import Course from "@/pages/home/Course";
+import Pg from "@/screens/course/Pg";
+import Course from "@/screens/home/Course";
 
 const ProgramWeOffer = () => {
   const [activeTab, setActiveTab] = useState("pg");

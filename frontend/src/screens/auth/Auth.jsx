@@ -5,15 +5,22 @@ import logo from "@/components/assests/logo.jpg";
 import girl from "@/components/assests/auth.png"; // replace with your actual image
 import { useRouter } from "next/navigation";
 import { LoginData, SignupData } from "@/components/Redux/actions/auth";
-import Glogin from "@/pages/auth/Glogin";
 import Input from "@/components/custom/Input";
 import Button from "@/components/custom/Button";
 import { useDispatch, useSelector } from "react-redux";
-import LinkedInSocialLogin from "./Linkedin";
 import { API, isStrongPassword, isValidEmail } from "@/components/utils/constant";
 import { useToast } from "@/components/context/ToastContext";
 import { clearMessages } from "@/components/Redux/features/authSlice";
 import axios from "axios";
+import dynamic from "next/dynamic";
+
+const Glogin = dynamic(() => import("@/screens/auth/Glogin"), {
+  ssr: false,
+});
+
+const  LinkedInSocialLogin = dynamic(() => import("@/screens/auth/Linkedin"), {
+  ssr: false,
+});
 
 const Auth = () => {
   const [mode, setMode] = useState("signup"); // signup | signin | forgot

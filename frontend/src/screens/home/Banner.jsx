@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react'
 import "../../app/globals.css"
 import Button from '@/components/custom/Button'
 import { MoveRight, User2 } from 'lucide-react'
-import { Whatsapp } from './Whatsapp'
+import  Whatsapp  from './Whatsapp'
 import { useRouter } from 'next/navigation'
 import { useToast } from '@/components/context/ToastContext'
 import { useDispatch, useSelector } from 'react-redux'

@@ -1,4 +1,4 @@
-import Settings from "@/pages/userDashboard/Settings";
+import Settings from "@/screens/userDashboard/Settings";
 
 
 

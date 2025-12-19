@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import Overview from "@/pages/description-online/Overview";
-import Review from "@/pages/description-online/Review";
-import Tabs from "@/pages/description-online/Tab";
+import Overview from "@/screens/description-online/Overview";
+import Review from "@/screens/description-online/Review";
+import Tabs from "@/screens/description-online/Tab";
 import CourseHeader from "./Header";
 import { useSelector } from "react-redux";
 import Curriculum from "./Curriculum";

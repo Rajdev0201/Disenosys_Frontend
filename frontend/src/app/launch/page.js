@@ -1,4 +1,4 @@
-import Launch from "@/pages/quicktest/Launch";
+import Launch from "@/screens/quicktest/Launch";
 
 
 

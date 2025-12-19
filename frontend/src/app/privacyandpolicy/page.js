@@ -1,5 +1,5 @@
-import Banner from "@/pages/Policy/BannerPrivacy";
-import Content from "@/pages/Policy/Privacy";
+import Banner from "@/screens/Policy/BannerPrivacy";
+import Content from "@/screens/Policy/Privacy";
 
 
 

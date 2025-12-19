@@ -1,4 +1,4 @@
-import Quicktest from "@/pages/quicktest/Quicktest";
+import Quicktest from "@/screens/quicktest/Quicktest";
 
 
 

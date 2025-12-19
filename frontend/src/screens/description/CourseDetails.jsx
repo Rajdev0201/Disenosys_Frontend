@@ -1,9 +1,9 @@
 "use client"
 import React, { useState } from "react";
-import Overview from "@/pages/description/Overview";
-import CourseList from "@/pages/description/CourseList";
-import Review from "@/pages/description/Review";
-import Tabs from "@/pages/description/Tab";
+import Overview from "@/screens/description/Overview";
+import CourseList from "@/screens/description/CourseList";
+import Review from "@/screens/description/Review";
+import Tabs from "@/screens/description/Tab";
 import CourseHeader from "./Header";
 
 

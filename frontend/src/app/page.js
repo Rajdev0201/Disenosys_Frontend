@@ -1,13 +1,13 @@
-import About from "@/pages/home/About";
-import Banner from "@/pages/home/Banner";
-import Count from "@/pages/home/Count";
-import Course from "@/pages/home/Course";
-import MarqueeView from "@/pages/home/MarqueeSlide";
-import Partner from "@/pages/home/Partner";
-import Placement from "@/pages/home/Placement";
-import Process from "@/pages/home/Process";
-import Testimonials from "@/pages/home/Testimonials";
-import WhyChoose from "@/pages/home/WhyChoose";
+import About from "@/screens/home/About";
+import Banner from "@/screens/home/Banner";
+import Count from "@/screens/home/Count";
+import Course from "@/screens/home/Course";
+import MarqueeView from "@/screens/home/MarqueeSlide";
+import Partner from "@/screens/home/Partner";
+import Placement from "@/screens/home/Placement";
+import Process from "@/screens/home/Process";
+import Testimonials from "@/screens/home/Testimonials";
+import WhyChoose from "@/screens/home/WhyChoose";
 
 
 

@@ -1,4 +1,4 @@
-import EditProfile from "@/pages/editProfile/Edit";
+import EditProfile from "@/screens/editProfile/Edit";
 
 
 

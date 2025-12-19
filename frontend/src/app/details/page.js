@@ -1,4 +1,4 @@
-import Form from "@/pages/quicktest/Form";
+import Form from "@/screens/quicktest/Form";
 
 
 

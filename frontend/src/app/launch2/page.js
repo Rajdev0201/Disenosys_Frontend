@@ -1,5 +1,5 @@
-import { Logo } from "@/pages/quicktest/Logo";
-import Second from "@/pages/quicktest/Second";
+import  Logo  from "@/screens/quicktest/Logo";
+import Second from "@/screens/quicktest/Second";
 
 
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { GraduationCap, User, ShieldCheck, ListCheck, Calendar, Gauge, ClipboardCheck, Banknote, GraduationCapIcon, Lightbulb } from "lucide-react";
-import Partner from '@/pages/home/Partner';
+import Partner from '@/screens/home/Partner';
 import Image from 'next/image';
 import sch from "@/components/assests/sch.jpg"
  

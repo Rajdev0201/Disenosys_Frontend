@@ -1,6 +1,6 @@
-import Banner from "@/pages/blog/Banner";
-import BlogInsights from "@/pages/blog/BlogInsights";
-import BrowseCourse from "@/pages/blog/BrowseCourse";
+import Banner from "@/screens/blog/Banner";
+import BlogInsights from "@/screens/blog/BlogInsights";
+import BrowseCourse from "@/screens/blog/BrowseCourse";
 
 
 export const metadata = {

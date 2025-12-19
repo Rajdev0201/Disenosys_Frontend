@@ -1,5 +1,5 @@
-import Banner from "@/pages/contact/Banner";
-import Form from "@/pages/contact/Form";
+import Banner from "@/screens/contact/Banner";
+import Form from "@/screens/contact/Form";
 
 
 

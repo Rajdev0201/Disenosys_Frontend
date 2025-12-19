@@ -9,8 +9,16 @@ import React, { useEffect, useState } from "react";
 
 const Results = () => {
   const router = useRouter();
-  const catiaPercentage = localStorage?.getItem("catiaPercentage") || 0;
-  const productPercentage = localStorage?.getItem("productPercentage") || 0;
+  const catiaPercentage =
+  typeof window !== "undefined"
+    ? Number(localStorage?.getItem("catiaPercentage")) || 0
+    : 0;
+
+const productPercentage =
+  typeof window !== "undefined"
+    ? Number(localStorage?.getItem("productPercentage")) || 0
+    : 0;
+
   const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
   const catia = clamp(parseInt(catiaPercentage, 10), 0, 100);
   const product = clamp(parseInt(productPercentage, 10), 0, 100);
@@ -232,7 +240,7 @@ const Results = () => {
   const [level, description] = yourLevel1.split(" ");
   const [level2, description2] = yourLevel2.split(" ");
 
-  console.log("Sharing post with score:", yourScore);
+
   const [accessToken, setAccessToken] = useState("");
   const [userUrn, setUserUrn] = useState("");
   const [showFetchProfilePopup, setShowFetchProfilePopup] = useState(false);
@@ -354,9 +362,9 @@ const Results = () => {
   //   }
   // };
 
-  const name = localStorage.getItem("name");
-  const email = localStorage.getItem("email");
-  const phone = localStorage.getItem("phone");
+  const name = localStorage?.getItem("name") || "";
+  const email = localStorage?.getItem("email") || "";
+  const phone = localStorage?.getItem("phone") || "";
   const sharePost = async () => {
     const imageUrl = "https://via.placeholder.com/800x400.png?text=Dummy+Image";
 

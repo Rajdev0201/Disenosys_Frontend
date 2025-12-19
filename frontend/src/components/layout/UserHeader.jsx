@@ -3,13 +3,19 @@ import React, { useEffect } from "react";
 import { Bell, Search } from "lucide-react";
 import Image from "next/image";
 import profile from "@/components/assests/u-d.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import { getProfile } from "../Redux/actions/auth";
 
 const UserHeader = () => {
  const {data} = useSelector((state) => state.user);
  const router = useRouter();
-
+ const dispatch = useDispatch();
+    
+     useEffect(() => {
+     dispatch(getProfile());
+   },[dispatch])
+ 
    useEffect(() => {
    if(!data){
      router.push("/signup")

@@ -15,7 +15,7 @@ const LinkedInSocialLogin = ({ text}) => {
   const startLinkedInAuth = async () => {
     try {
       const { data } = await axios.get(API + "auth");
-      window.location.href = data.url;
+      window.location.href = data?.url;
     } catch (error) {
       console.error("Error starting LinkedIn auth:", error);
       setError("Error starting LinkedIn login process.");
@@ -33,8 +33,8 @@ const LinkedInSocialLogin = ({ text}) => {
         }
       );
 
-      if (data && data.accessToken) {
-        setAccessToken(data.accessToken);
+      if (data && data?.accessToken) {
+        setAccessToken(data?.accessToken);
         alert("Access token obtained successfully!");
       } else {
         console.error("Access token not obtained");
@@ -46,8 +46,8 @@ const LinkedInSocialLogin = ({ text}) => {
         headers: { Authorization: `Bearer ${data.accessToken}` },
       });
 
-      if (profileData && profileData.profile) {
-        dispatch(LinkedInLog(profileData.user));
+      if (profileData && profileData?.profile) {
+        dispatch(LinkedInLog(profileData?.user));
         // Dispatch the profile to the Redux store
         setProfile(profileData.profile);
         alert("Logged in successfully!");

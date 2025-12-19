@@ -1,5 +1,5 @@
-import ArticleCourses from "@/pages/blog/Article";
-import Banner from "@/pages/blog/BlogDetails";
+import ArticleCourses from "@/screens/blog/Article";
+import Banner from "@/screens/blog/BlogDetails";
 
 
 

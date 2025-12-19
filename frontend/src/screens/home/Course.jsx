@@ -3,11 +3,12 @@ import { useToast } from "@/components/context/ToastContext";
 import Button from "@/components/custom/Button";
 import Card from "@/components/custom/Card";
 import CourseModal from "@/components/modal/Enroll";
+import { fetchCourse } from "@/components/Redux/actions/Course";
 import { CourseLoader } from "@/components/utils/Loader";
 import confetti from "canvas-confetti";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Course = ({ c1, c2, c3, c4 }) => {
   const [selectedCategory, setSelectedCategory] = useState("All Courses");
@@ -19,6 +20,12 @@ const Course = ({ c1, c2, c3, c4 }) => {
   const hasFired = useRef(false); // stops multiple triggers
   const [selectedCourse, setSelectedCourse] = useState(null);
   const {showToast} = useToast();
+  const dispatch = useDispatch();
+    
+     useEffect(() => {
+     dispatch(fetchCourse());
+   },[dispatch])
+ 
 
   useEffect(() => {
     if (!sectionRef.current) return;

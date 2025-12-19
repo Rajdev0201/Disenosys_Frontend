@@ -1,4 +1,4 @@
-import FaqSection from "@/pages/Policy/FAQ";
+import FaqSection from "@/screens/Policy/FAQ";
 
 
  

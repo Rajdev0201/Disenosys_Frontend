@@ -1,9 +1,9 @@
-import Banner from '@/pages/about/Banner'
-import Goals from '@/pages/about/Goals'
-import Inspire from '@/pages/about/Inspire'
-import OurTeam from '@/pages/about/OurTeam'
-import About from '@/pages/about/WhoweAre'
-import WhyChoose from '@/pages/about/WhyChoose'
+import Banner from '@/screens/about/Banner'
+import Goals from '@/screens/about/Goals'
+import Inspire from '@/screens/about/Inspire'
+import OurTeam from '@/screens/about/OurTeam'
+import About from '@/screens/about/WhoweAre'
+import WhyChoose from '@/screens/about/WhyChoose'
 import React from 'react'
 
 

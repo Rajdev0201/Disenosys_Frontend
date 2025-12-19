@@ -1,4 +1,4 @@
-import Dashboard from "@/pages/userDashboard/Dashboard";
+import Dashboard from "@/screens/userDashboard/Dashboard";
 
 
 

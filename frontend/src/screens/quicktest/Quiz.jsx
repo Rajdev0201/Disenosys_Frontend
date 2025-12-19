@@ -6,7 +6,7 @@ const QuizScreen = ({ questions }) => {
   const router = useRouter();
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(
-    parseInt(localStorage.getItem("currentQuestionIndex0")) || 0
+    parseInt(localStorage?.getItem("currentQuestionIndex0")) || 0
   );
 
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -17,7 +17,7 @@ const QuizScreen = ({ questions }) => {
   );
 
   const [globalTimeRemaining, setGlobalTimeRemaining] = useState(() => {
-    const startTime = localStorage.getItem("startTime0");
+    const startTime = localStorage?.getItem("startTime0");
     if (startTime) {
       const now = new Date();
       const elapsedTime = now - new Date(startTime);
@@ -28,14 +28,14 @@ const QuizScreen = ({ questions }) => {
   });
 
   useEffect(() => {
-    if (!localStorage.getItem("startTime0")) {
+    if (!localStorage?.getItem("startTime0")) {
       const now = new Date();
       localStorage.setItem("startTime0", now.toISOString());
     }
   }, []);
 
   useEffect(() => {
-    const startTime = new Date(localStorage.getItem("startTime0"));
+    const startTime = new Date(localStorage?.getItem("startTime0"));
     const examDuration = 450 * 1000;
 
     const timer = setInterval(() => {
@@ -82,7 +82,7 @@ const QuizScreen = ({ questions }) => {
     if (currentQuestionIndex < questions.length - 1) {
       const nextIndex = currentQuestionIndex + 1;
       setCurrentQuestionIndex(nextIndex);
-      localStorage.setItem("currentQuestionIndex0", nextIndex);
+      localStorage?.setItem("currentQuestionIndex0", nextIndex);
       setSelectedAnswer(null);
     } else {
       handleFinish();
@@ -93,8 +93,8 @@ const QuizScreen = ({ questions }) => {
     const correctAnswers = answers.filter((answer) => answer.isCorrect).length;
     const totalScore = correctAnswers * 10;
     const percentage = (correctAnswers / questions.length) * 100;
-    localStorage.setItem("totalScoreCatia", totalScore);
-    localStorage.setItem("catiaPercentage", percentage.toFixed(2));
+    localStorage?.setItem("totalScoreCatia", totalScore);
+    localStorage?.setItem("catiaPercentage", percentage.toFixed(2));
     return {
       totalScore,
       percentage: percentage.toFixed(2),

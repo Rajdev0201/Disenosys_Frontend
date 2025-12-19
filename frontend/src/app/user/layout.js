@@ -1,3 +1,4 @@
+"use client"
 import UserHeader from "@/components/layout/UserHeader";
 import UserSideBar from "@/components/layout/UserSideBar";
 

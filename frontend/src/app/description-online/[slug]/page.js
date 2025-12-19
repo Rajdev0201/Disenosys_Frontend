@@ -1,5 +1,5 @@
-import Banner from "@/pages/description-online/Banner";
-import CourseDetails from "@/pages/description-online/CourseDetails";
+import Banner from "@/screens/description-online/Banner";
+import CourseDetails from "@/screens/description-online/CourseDetails";
 
 
 export async function generateMetadata ({params}) {

@@ -17,7 +17,7 @@ const Login = () => {
                 userEmail: decoded.email,
                 userName: decoded.name}, { withCredentials: true } );
             
-            dispatch(GoogleLog(response.data.user));
+            dispatch(GoogleLog(response?.data?.user));
             nav.push("/")
         } catch (error) {
             console.error('Error saving user data:', error);

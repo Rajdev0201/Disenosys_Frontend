@@ -6,18 +6,18 @@ const ProductQuizScreen = ({ questions }) => {
   const router = useRouter();
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(
-    parseInt(localStorage.getItem("currentQuestionIndex1")) || 0
+    parseInt(localStorage?.getItem("currentQuestionIndex1")) || 0
   );
 
   const [selectedAnswer, setSelectedAnswer] = useState(null);
 
   const [answers, setAnswers] = useState(
-    JSON.parse(localStorage.getItem("answers1")) ||
+    JSON.parse(localStorage?.getItem("answers1")) ||
       Array(questions?.length || 0).fill({ status: "unanswered1" })
   );
 
   const [globalTimeRemaining, setGlobalTimeRemaining] = useState(() => {
-    const startTime = localStorage.getItem("startTime1");
+    const startTime = localStorage?.getItem("startTime1");
     if (startTime) {
       const now = new Date();
       const elapsedTime = now - new Date(startTime);
@@ -28,14 +28,14 @@ const ProductQuizScreen = ({ questions }) => {
   });
 
   useEffect(() => {
-    if (!localStorage.getItem("startTime1")) {
+    if (!localStorage?.getItem("startTime1")) {
       const now = new Date();
-      localStorage.setItem("startTime1", now.toISOString());
+      localStorage?.setItem("startTime1", now.toISOString());
     }
   }, []);
 
   useEffect(() => {
-    const startTime = new Date(localStorage.getItem("startTime1"));
+    const startTime = new Date(localStorage?.getItem("startTime1"));
     const examDuration = 450 * 1000;
 
     const timer = setInterval(() => {
@@ -82,7 +82,7 @@ const ProductQuizScreen = ({ questions }) => {
     if (currentQuestionIndex < questions.length - 1) {
       const nextIndex = currentQuestionIndex + 1;
       setCurrentQuestionIndex(nextIndex);
-      localStorage.setItem("currentQuestionIndex1", nextIndex);
+      localStorage?.setItem("currentQuestionIndex1", nextIndex);
       setSelectedAnswer(null);
     } else {
       handleFinish();
@@ -93,8 +93,8 @@ const ProductQuizScreen = ({ questions }) => {
     const correctAnswers = answers.filter((answer) => answer.isCorrect).length;
     const totalScore = correctAnswers * 10;
     const percentage = (correctAnswers / questions.length) * 100;
-    localStorage.setItem("totalScoreProduct", totalScore);
-    localStorage.setItem("productPercentage", percentage.toFixed(2));
+    localStorage?.setItem("totalScoreProduct", totalScore);
+    localStorage?.setItem("productPercentage", percentage.toFixed(2));
     return {
       totalScore,
       percentage: percentage.toFixed(2),

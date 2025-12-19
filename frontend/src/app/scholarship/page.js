@@ -1,4 +1,4 @@
-import GetStarted from "@/pages/getStarted/ScholarShip";
+import GetStarted from "@/screens/getStarted/ScholarShip";
 
 
 

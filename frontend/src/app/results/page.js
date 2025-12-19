@@ -1,4 +1,5 @@
-import Results from "@/pages/quicktest/Result";
+import Results from "@/screens/quicktest/Result";
+import { Suspense } from "react";
 
 
 
@@ -7,7 +8,9 @@ import Results from "@/pages/quicktest/Result";
 export default function ResultsPage () {
     return(
         <main>
+            <Suspense fallback={<div>Loading...</div>}>
             <Results/>
+            </Suspense>
         </main>
     )
 }
