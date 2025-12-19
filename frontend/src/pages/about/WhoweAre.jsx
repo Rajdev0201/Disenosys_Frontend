@@ -1,9 +1,12 @@
+"use client"
 import Image from "next/image";
 import React from "react";
 import about from "@/components/assests/abt.png";
 import Button from "@/components/custom/Button";
+import { useRouter } from "next/navigation";
 // import Toast from "@/components/custom/Toast";
 const About = () => {
+  const router = useRouter();
   return (
  <section>
   <div className="px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32 py-10 sm:py-14 md:py-20 lg:py-24 font-dm-sans">
@@ -52,6 +55,7 @@ const About = () => {
         <div className="flex justify-center lg:justify-start">
           <Button
             text="Explore Now"
+            onClick={() => router.push("/course")}
             className="bg-[linear-gradient(to_right,#0077B3,#45D2FF)] px-5 sm:px-6 py-2 sm:py-3 w-auto sm:w-40 font-medium rounded-md shadow-inner text-white font-dm-sans hover:cursor-pointer"
           />
         </div>
