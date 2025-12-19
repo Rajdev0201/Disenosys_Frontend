@@ -129,11 +129,11 @@ const Navbar = () => {
 
             {/* Buttons visible in mobile */}
             <div className="flex flex-col gap-3 mt-0">
-              {!data?.userName ? 
+          {!data?.userName ? 
           <Button
             text="Sign Up"
             onClick={handlePushLogin}
-            className="hidden lg:block bg-[linear-gradient(to_right,#0077B3,#45D2FF)] px-8 py-2 font-bold rounded-lg text-white font-dm-sans hover:cursor-pointer"
+            className="block lg:hidden bg-[linear-gradient(to_right,#0077B3,#45D2FF)] px-8 py-2 font-bold rounded-lg text-white font-dm-sans hover:cursor-pointer"
           />
           : <UserDropDown userData={data} loading={loading} className="block lg:hidden"/>
           }
