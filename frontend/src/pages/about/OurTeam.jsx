@@ -3,6 +3,15 @@ import React from 'react'
 import team from "@/components/assests/team.jpg"
 import Card from '@/components/custom/Card'
 
+
+
+const data = [
+  {
+    name:"Senthilkumar S K",
+    industry:"Senior BIW Project Lead",
+    Experience:"16+ Years | OEM & Tier-1 Programs",
+  }
+]
 const OurTeam = () => {
   return (
     <section>
@@ -21,16 +30,18 @@ const OurTeam = () => {
       </p>
   </header>
 
-      <div className='grid grid-cols-4 font-dm-sans'>
+      {data.map((men,i) => (
+      <div key={i} className='grid grid-cols-4 font-dm-sans'>
           <Card className='bg-white rounded-lg shadow-md'>
              <Image src={team} alt='team' className='object-cover rounded-tr-lg rounded-tl-lg'/>
              <div className='flex flex-col space-y-2 py-2 px-3'>
-             <h2 className='text-[#101359] text-xl font-semibold'>Karan Desai</h2>
-             <h3 className='text-[#101359] text-sm'>Automobile Engineering Expert</h3>
-             <h4 className='text-sm text-[#8C8C8C]'>Expert in Powertrain, Chassis Design, and Diagnostics</h4>
+             <h2 className='text-[#101359] text-xl font-semibold'>{men.name}</h2>
+             <h3 className='text-[#101359] text-sm'>{men.industry}</h3>
+             <h4 className='text-sm text-[#8C8C8C]'>{men.Experience}</h4>
              </div>
           </Card>
       </div>
+       ))}
     </div>
  
     </section>

@@ -10,6 +10,14 @@ import Testimonials from "@/pages/home/Testimonials";
 import WhyChoose from "@/pages/home/WhyChoose";
 
 
+
+
+export const metadata = () => { 
+  return{
+    title:"Home"
+  }
+}
+
 export default function Home() {
   return (
     <div className="">

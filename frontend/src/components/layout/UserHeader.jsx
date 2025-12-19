@@ -1,12 +1,21 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { Bell, Search } from "lucide-react";
 import Image from "next/image";
 import profile from "@/components/assests/u-d.png";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 
 const UserHeader = () => {
-    const {data} = useSelector((state) => state.user);
+ const {data} = useSelector((state) => state.user);
+ const router = useRouter();
+
+   useEffect(() => {
+   if(!data){
+     router.push("/signup")
+   }
+   },[])
+ 
   return (
     <nav className="w-full bg-white shadow-sm">
       <div className="flex items-center justify-between px-4 xl:px-12 py-3">

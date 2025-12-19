@@ -10,8 +10,12 @@ const dmSans = DM_Sans({
 });
 
 export const metadata = {
-  title: "Disenosys | Automotive Learning Platform",
-  description: "Upskill in automotive technology with Disenosys",
+  title: {
+  absolute:"",
+  default:"Disenosys",
+  template:"%s | Disenosys"
+  },
+ description:"Disenosys is the preferred training and hiring partner for leading automotive OEMs and design studios. We equip mechanical engineers with real-world skills in BIW, Trims, Seating and more through industry-aligned programs that produce job-ready talent.",
 };
 
 export default function RootLayout({ children }) {

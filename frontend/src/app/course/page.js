@@ -7,6 +7,11 @@ import Partner from "@/pages/home/Partner";
 
 
 
+export const metadata = () => { 
+  return{
+    title:"Course"
+  }
+}
 
 export default function CoursePage(){
     return (

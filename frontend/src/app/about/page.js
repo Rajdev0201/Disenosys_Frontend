@@ -6,6 +6,14 @@ import About from '@/pages/about/WhoweAre'
 import WhyChoose from '@/pages/about/WhyChoose'
 import React from 'react'
 
+
+
+export const metadata = () => { 
+  return{
+    title:"About"
+  }
+}
+
 const page = () => {
   return (
     <main>

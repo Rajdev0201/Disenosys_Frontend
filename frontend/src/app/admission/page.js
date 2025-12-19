@@ -5,6 +5,11 @@ import Process from "@/pages/admission/Process";
 import MarqueeView from "@/pages/home/MarqueeSlide";
 
 
+export const metadata = () => { 
+  return{
+    title:"Admission"
+  }
+}
 
 
 export default function AdmissionPage () {

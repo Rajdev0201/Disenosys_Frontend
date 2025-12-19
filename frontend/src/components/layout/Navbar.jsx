@@ -32,24 +32,13 @@ const Navbar = () => {
     { name: "Contact", href: "/contact" },
   ];
 
-
-  // useEffect(() => {
-  // const user = "";
-  // if(!user){
-  //   router.push("/signup")
-  // }
-  // },[])
-
-  const handleClick =  () => {
-    nav.push("/signup")
-  }
-
   return (
     <nav className="fixed w-full z-50 bg-white top-10 left-0 shadow-sm">
       <div className="flex items-center justify-between px-4 md:px-10 lg:px-8 xl:px-24 py-2">
         {/* Logo */}
+        <div className="cursor-pointer" onClick={() => nav.push("/")}>
         <Image src={logo} alt="Logo" className="object-cover w-28 lg:w-44" />
-
+        </div>
         {/* Buttons + Mobile Menu Toggle */}
         <div className="flex items-center gap-3 md:gap-4 md:order-2">
           <Button
