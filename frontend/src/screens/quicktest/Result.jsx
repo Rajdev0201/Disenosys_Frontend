@@ -362,9 +362,20 @@ const productPercentage =
   //   }
   // };
 
-  const name = localStorage?.getItem("name") || "";
-  const email = localStorage?.getItem("email") || "";
-  const phone = localStorage?.getItem("phone") || "";
+ const name =
+  typeof window !== "undefined"
+    ? localStorage.getItem("name") || ""
+    : "";
+
+const email =
+  typeof window !== "undefined"
+    ? localStorage.getItem("email") || ""
+    : "";
+
+const phone =
+  typeof window !== "undefined"
+    ? localStorage.getItem("phone") || ""
+    : "";
   const sharePost = async () => {
     const imageUrl = "https://via.placeholder.com/800x400.png?text=Dummy+Image";
 
