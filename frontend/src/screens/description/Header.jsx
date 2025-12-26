@@ -68,12 +68,13 @@ const liveDiscount = getDiscountPercentage(selected.orginal,selected.price);
         </div>
 
         {/* Right: Pricing card */}
-        <div className="bg-white rounded-2xl shadow-md p-6 h-[400px] col-span-12 lg:col-span-4 space-y-4 relative">
+        <div className="bg-white rounded-2xl shadow-md p-6 h-[400px] col-span-12 lg:col-span-4 space-y-3 relative">
           <div className="flex items-center gap-4">
               <h2 className="text-2xl font-semibold text-[#101359]">₹{selected.price}</h2>
           <p className="line-through text-sm text-[#101359]">₹{selected.orginal}</p>
           </div>
           <p className="text-white bg-[#101359] p-1 rounded-2xl w-20 text-center text-sm">{liveDiscount}% OFF</p>
+          <span className="text-xs text-[#808080] mb-2">EMI starts from <b>₹4,888/</b>- per month</span>
           <p className="text-md font-medium text-[#808080]">Hurry! Offer ends soon</p>
 
           <div className="flex justify-between text-sm text-[#8C8C8C]">

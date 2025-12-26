@@ -43,10 +43,9 @@ const UserSideBar = () => {
       <div className="flex flex-col items-center justify-center py-4 md:py-0 hover:cursor-pointer" onClick={() => router.push("/")}>
         <Image src={logo} alt="logo" className="w-12 md:w-20 lg:w-36 mt-3" />
         <span className="text-gray-300 lg:font-semibold text-xs text-center">
-        EduTech Company
+         MyLearningHub
       </span>
       </div>
-
       <div className="border-b border-white/30  mb-5" />
 
       {/* NAVIGATION */}

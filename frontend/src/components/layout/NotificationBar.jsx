@@ -41,18 +41,28 @@ const NotificationBar = () => {
         {/* RIGHT DIV */}
         <div className="col-span-4 md:col-span-2">
           <div className="bg-[#45D2FF] flex gap-1 md:gap-3 py-2.5 justify-center items-center">
-            <div className="w-6 h-6 flex items-center p-1 md:p-0 justify-center rounded-full bg-white">
+               <a href="https://youtube.com/@disenosysindia?feature=shared"
+             className="w-6 h-6 flex items-center p-1 md:p-0 justify-center rounded-full bg-white">
               <Youtube size={16} className="text-[#45D2FF]" />
-            </div>
-            <div className="w-6 h-6 flex items-center p-1 md:p-0 justify-center rounded-full bg-white">
+             </a>
+           
+            <a href="https://www.instagram.com/disenosys_official/"
+             className="w-6 h-6 flex items-center p-1 md:p-0 justify-center rounded-full bg-white"
+            >
               <Instagram size={16} className="text-[#45D2FF]" />
-            </div>
-            <div className="w-6 h-6 flex items-center  p-1 md:p-0 justify-center rounded-full bg-white">
+            </a>
+
+            <a href="https://www.facebook.com/disenosysofficial/"
+             className="w-6 h-6 flex items-center p-1 md:p-0 justify-center rounded-full bg-white"
+            >
               <Facebook size={16} className="text-[#45D2FF]" />
-            </div>
-            <div className="w-6 h-6 flex items-center  p-1 md:p-0 justify-center rounded-full bg-white">
+            </a>
+            <a href="https://www.linkedin.com/school/disenosys/"
+             className="w-6 h-6 flex items-center p-1 md:p-0 justify-center rounded-full bg-white"
+            >
               <Linkedin size={16} className="text-[#45D2FF]" />
-            </div>
+            </a>
+            
           </div>
         </div>
       </div>

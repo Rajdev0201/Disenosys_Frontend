@@ -74,28 +74,38 @@ const Course = ({ c1, c2, c3, c4 }) => {
   const specificCourses = [
     "CATIA Foundations for Automotive Designers",
     "Advanced CATIA Surface",
-    "Fundamentals Of BIW in Automotive Design",
-    "Fundamentals of Plastic Trims",
     "Solid Model Remastering",
-    "Automotive B-Pillar Assembly",
-    "Bracket And Reinforcement",
-    "Automotive Close Volume & Feature Creation",
     "Surface Remastering for Automotive Designers",
+    "Automotive Close Volume & Feature Creation",
+    "Bracket And Reinforcement",
+    "Automotive B-Pillar Assembly",
+    "Fundamentals of Plastic Trims",
+    "Fundamentals Of BIW in Automotive Design",
   ];
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
   };
 
-  const filteredCourses = data?.filter((course) => {
-    const isInSpecificCourses = specificCourses.includes(course?.courseName);
+  const courseOrderMap = new Map(
+  specificCourses.map((name, index) => [name, index])
+);
+
+const filteredCourses = data
+  ?.filter((course) => {
+    const isInSpecificCourses = courseOrderMap.has(course?.courseName);
 
     const isCategoryMatch =
       selectedCategory === "All Courses" ||
-      course?.category?.some((cat) => cat === selectedCategory);
+      course?.category?.includes(selectedCategory);
 
     return isInSpecificCourses && isCategoryMatch;
-  });
+  })
+  .sort(
+    (a, b) =>
+      courseOrderMap.get(a.courseName) -
+      courseOrderMap.get(b.courseName)
+  );
 
   const goToDescriptionPage = (slug) => {
     nav.push(`/description-online/${encodeURIComponent(slug)}`);

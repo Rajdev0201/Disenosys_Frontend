@@ -40,7 +40,7 @@ const OurTeam = () => {
       </p>
   </header>
 
-      <div className='grid grid-cols-4 gap-4 font-dm-sans'>
+      <div className='grid lg:grid-cols-4 gap-4 font-dm-sans'>
            {data.map((men,i) => (
           <Card key={i} className='bg-white rounded-lg shadow-md'>
              <Image src={team} alt='team' className='object-cover rounded-tr-lg rounded-tl-lg'/>

@@ -41,7 +41,6 @@ const UserDropDown = ({ userData, className,loading }) => {
 
   return (
     <section>
-
       <div className={`relative ${className}`} ref={dropdownRef}>
         {/* USER BUTTON */}
         <button

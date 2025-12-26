@@ -1,31 +1,18 @@
 "use client";
-import React, { useEffect } from "react";
+import React, {useState } from "react";
 import { Bell, Search } from "lucide-react";
-import Image from "next/image";
-import profile from "@/components/assests/u-d.png";
-import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
-import { getProfile } from "../Redux/actions/auth";
+import { useSelector } from "react-redux";
+import NotificationModal from "../modal/Notification";
 
 const UserHeader = () => {
- const {data} = useSelector((state) => state.user);
- const router = useRouter();
- const dispatch = useDispatch();
-    
-     useEffect(() => {
-     dispatch(getProfile());
-   },[dispatch])
- 
-   useEffect(() => {
-   if(!data){
-     router.push("/signup")
-   }
-   },[])
- 
+  const { data} = useSelector((state) => state.user);
+  const [open, setOpen] = useState(false);
+
+
+
   return (
     <nav className="w-full bg-white shadow-sm">
       <div className="flex items-center justify-between px-4 xl:px-12 py-3">
-
         {/* Search */}
         <div className="relative flex-1 max-w-[180px] sm:max-w-xs lg:max-w-md">
           <Search
@@ -48,26 +35,32 @@ const UserHeader = () => {
 
         {/* Right section */}
         <div className="flex items-center gap-3 sm:gap-6">
-
           {/* Notification */}
-          <div className="relative bg-[#F9F8F9] p-2 rounded-full">
-            <Bell size={22} className="text-gray-700" />
-            <span className="absolute top-1 right-1 block h-2 w-2 bg-blue-500 rounded-full ring-2 ring-white" />
+          <div className="relative">
+            {/* Bell */}
+            <button
+              onClick={() => setOpen(true)}
+              className="relative bg-[#F9F8F9] p-2 rounded-full hover:bg-gray-100 transition hover:cursor-pointer"
+            >
+              <Bell size={22} className="text-gray-700" />
+
+              {/* Unread dot */}
+              <span className="absolute top-1 right-1 block h-2 w-2 bg-blue-500 rounded-full ring-2 ring-white" />
+            </button>
+
+            {/* Modal */}
+            <NotificationModal open={open} onClose={() => setOpen(false)} />
           </div>
 
           {/* Profile */}
           <div className="flex items-center gap-2">
-            <Image
-              src={profile}
-              alt="user"
-              className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#F9F8F9] p-1"
-            />
+            <div className="w-10 h-10 rounded-full bg-[#F2F2F2] flex items-center justify-center font-semibold">
+              <span>{data?.userName?.charAt(0)?.toUpperCase()}</span>
+            </div>
 
             {/* Hide text on mobile */}
             <div className="hidden sm:flex flex-col font-dm-sans leading-tight">
-              <h4 className="text-sm font-bold text-black">
-               {data?.userName}
-              </h4>
+              <h4 className="text-sm font-bold text-black">{data?.userName}</h4>
               <h5 className="text-xs text-[#808080] font-medium">
                 {data?.userEmail}
               </h5>

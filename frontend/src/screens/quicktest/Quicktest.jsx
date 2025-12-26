@@ -1,4 +1,5 @@
 "use client"
+import { useToast } from '@/components/context/ToastContext';
 import Button from '@/components/custom/Button';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -6,8 +7,17 @@ import React from 'react';
 
 const Quicktest = () => {
    const router = useRouter();
-   
-  const onClick = () => {
+   const {data,error} = ((state) => state.user)
+   const {showToast} = useToast();
+   const onClick = () => {
+       if (!data) {
+        return showToast(
+          "error",
+          "Please Sign In",
+          "You must sign in before attend the test."
+        );
+      }
+      
       localStorage.removeItem("startTime0");
       localStorage.removeItem("catiaPercentage");
       localStorage.removeItem("productPercentage");
