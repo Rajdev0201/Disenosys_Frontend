@@ -42,7 +42,6 @@ export default function LayoutWrapper({ children }) {
 
    useEffect(() => {
     setLaunchActive(isLaunchActive());
-   console.log("Launch Active:", isLaunchActive());
     // auto switch at 12:00 AM
     const timer = setInterval(() => {
       setLaunchActive(isLaunchActive());
