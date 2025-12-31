@@ -7,14 +7,14 @@ import { useDispatch } from "react-redux";
 import { getProfile } from "@/components/Redux/actions/auth";
 import { useEffect, useState } from "react";
 import Loader from "@/components/custom/LoadingStyle";
-import { isLaunchActive } from "@/components/utils/constant";
+// import { isLaunchActive } from "@/components/utils/constant";
 import LaunchMode from "@/components/custom/Launch";
 
 export default function LayoutWrapper({ children }) {
   const pathname = usePathname();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
-  const [launchActive, setLaunchActive] = useState(false);
+  // const [launchActive, setLaunchActive] = useState(false);
 
   useEffect(() => {
     dispatch(getProfile());
@@ -40,15 +40,15 @@ export default function LayoutWrapper({ children }) {
   ];
   const hideLayout = noLayoutRoutes.includes(pathname);
 
-   useEffect(() => {
-    setLaunchActive(isLaunchActive());
-    // auto switch at 12:00 AM
-    const timer = setInterval(() => {
-      setLaunchActive(isLaunchActive());
-    }, 1000);
+  //  useEffect(() => {
+  //   setLaunchActive(isLaunchActive());
+  //   // auto switch at 12:00 AM
+  //   const timer = setInterval(() => {
+  //     setLaunchActive(isLaunchActive());
+  //   }, 1000);
 
-    return () => clearInterval(timer);
-  }, []);
+  //   return () => clearInterval(timer);
+  // }, []);
 
 
   useEffect(() => {
@@ -57,9 +57,9 @@ export default function LayoutWrapper({ children }) {
   }, []);
 
     // 🎉 BEFORE 12:00 AM → Launch UI
-  if (launchActive) {
-    return <LaunchMode />;
-  }
+  // if (launchActive) {
+  //   return <LaunchMode />;
+  // }
 
   return (
     <>
