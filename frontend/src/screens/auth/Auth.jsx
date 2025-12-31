@@ -37,10 +37,12 @@ const Auth = () => {
 
   // Show error from backend
   useEffect(() => {
-    if (error) {
+    if (error && firstTime.current) {
+      firstTime.current = false;
       showToast("error", error, "Please check your account info before continuing.!");
     }
-  }, [error]);
+    dispatch(clearMessages());
+  }, [error,dispatch]);
 
    useEffect(() => {
     if (logoutmsg && firstTime.current) {
@@ -52,7 +54,6 @@ const Auth = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    setLoading(true);
     // 1. Required fields
     if (
       !userName.trim() ||
@@ -94,6 +95,8 @@ const Auth = () => {
       );
     }
 
+    setLoading(true);
+
     // 5. Prepare data
     const data = { userName, userEmail, password };
 
@@ -103,7 +106,7 @@ const Auth = () => {
 
   const handleSignin = async (e) => {
     e.preventDefault();
-    setLoading(true);
+
     if (!userEmail.trim() || !password) {
       return showToast(
         "error",
@@ -120,8 +123,10 @@ const Auth = () => {
       );
     }
 
-    const data = { userEmail, password };
+    setLoading(true);
 
+    const data = { userEmail, password };
+    
     dispatch(LoginData(data, nav));
   };
  

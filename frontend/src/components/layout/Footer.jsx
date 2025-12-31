@@ -121,7 +121,7 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="bg-[#45D2FF] flex flex-col sm:flex-row justify-between items-center gap-2 px-6 sm:px-10 lg:px-20 py-3">
         <h1 className="text-white text-xs sm:text-sm md:text-base font-medium text-center sm:text-left">
-          © 2025 Disenosys. All rights reserved.
+          © 2026 Disenosys. All rights reserved.
         </h1>
         <div className="flex gap-3 text-white text-xs sm:text-sm md:text-base">
           <Link href="/termsandconditions" className="hover:text-gray-200">

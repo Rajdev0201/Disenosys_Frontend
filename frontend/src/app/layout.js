@@ -3,6 +3,8 @@ import "./globals.css";
 import LayoutWrapper from "@/app/LayoutWrapper.jsx";
 import { Providers } from "@/components/Redux/Provide";
 import { ToastProvider } from "@/components/context/ToastContext";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -24,7 +26,11 @@ export default function RootLayout({ children }) {
       <body className={`${dmSans.variable} antialiased`}>
         <ToastProvider>
          <Providers>
-        <LayoutWrapper>{children}</LayoutWrapper>
+        <LayoutWrapper>
+          {children}
+         <SpeedInsights />
+         <Analytics/>
+        </LayoutWrapper>
         </Providers>
         </ToastProvider>
       </body>
