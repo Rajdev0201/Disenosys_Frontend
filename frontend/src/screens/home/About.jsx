@@ -20,12 +20,12 @@ const About = () => {
         {/* Right Side - Text Content */}
         <div className="flex flex-col font-dm-sans text-center md:text-left">
           <header className="space-y-4 ">
-          <span className="block  text-sm font-bold tracking-wide">ABOUT US</span>
+          <span className="block text-sm font-bold tracking-wide">ABOUT US</span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#45D2FF] leading-snug">
             <span className="text-[#101359]">Transforming</span> Engineers into
             Industry Leaders
           </h2>
-          <p className="text-sm sm:text-base md:text-md font-medium leading-7 text-[#8C8C8C]">
+          <p className="text-sm text-start sm:text-base md:text-md font-medium leading-7 text-[#8C8C8C]">
             We are Disenosys, a leading EdTech platform transforming careers
             since 2019. Specializing in the Indian Automotive Industry, we
             design industry-specific courses to upskill students and
