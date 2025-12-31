@@ -9,7 +9,7 @@ export const metadata = {
 };
 
 async function getBlogs() {
-  const res = await fetch("https://disenosys-dkhj.onrender.com/api/blog/data", {
+  const res = await fetch("https://disenosys-backendv2-9yuy.onrender.com/api/blog/data", {
     next: { revalidate: 60 }, // for ISR
   });
   const data = await res.json();
