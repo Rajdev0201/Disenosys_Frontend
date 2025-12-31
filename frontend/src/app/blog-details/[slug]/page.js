@@ -7,9 +7,21 @@ async function getBlogs() {
   const res = await fetch("https://disenosys-backendv2-9yuy.onrender.com/api/blog/data", {
     next: { revalidate: 60 }, // for ISR
   });
-  const data = await res.json();
-  return data;
+  if (!res.ok) {
+    console.error("Blog API failed:", res.status);
+    return [];
+  }
+
+  const contentType = res.headers.get("content-type");
+
+  if (!contentType?.includes("application/json")) {
+    console.error("Invalid response type:", contentType);
+    return [];
+  }
+
+  return res.json();
 }
+
 
 
 export default async function BlogDetailsPage({params}){
