@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 export function middleware(request) {
   const token = request.cookies.get("token")?.value;
+  console.log("Middleware Token:", token);
   const pathname = request.nextUrl.pathname;
 
   // 🚫 Not logged in → block dashboard
