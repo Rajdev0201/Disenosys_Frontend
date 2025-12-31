@@ -44,11 +44,11 @@ export default function LaunchMode() {
 
         {/* LEFT – CONTENT */}
         <div className="flex flex-col justify-center text-center md:text-left">
-          <h1 className="text-xl md:text-2xl font-extrabold mb-4">
+          <h1 className="text-lg md:text-2xl font-extrabold mb-4">
             🎉 Disenosys New Year Launch
           </h1>
 
-          <p className="text-base md:text-md text-gray-300 mb-6">
+          <p className="text-sm md:text-md text-gray-300 mb-6">
             New Version • New Courses • Exclusive Launch Offers
           </p>
 
@@ -62,7 +62,7 @@ export default function LaunchMode() {
         </div>
 
         {/* RIGHT – TIMER */}
-        <div className="flex flex-col items-center justify-center border border-white/20 rounded-xl p-6">
+        <div className="flex flex-col items-center justify-center border border-white/20 rounded-xl p-2 md:p-6">
           <p className="text-sm uppercase tracking-widest text-gray-400 mb-2">
             Current Time (IST)
           </p>

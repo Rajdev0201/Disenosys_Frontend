@@ -24,7 +24,7 @@ const EditProfile = () => {
   };
  
   const handleSubmit = () => {
-    console.log("Profile updated:", formData);
+    alert("something went wrong! try again later.");
   };
  
   if (!isOpen) return null;
