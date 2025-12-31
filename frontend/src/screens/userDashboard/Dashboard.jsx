@@ -16,6 +16,9 @@ import { useRouter } from "next/navigation";
 const Dashboard = () => {
    const {data} = useSelector((state) => state.user);
    const router = useRouter();
+   if(!data){
+    router.push("/signup");
+   }
   return (
     <section>
       <div className="px-4 xl:px-12 font-dm-sans h-screen">
