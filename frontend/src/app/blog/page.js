@@ -10,10 +10,10 @@ export const metadata = {
 
 
 async function getBlogs() {
-  const res = await fetch("https://disenosys-backendv2-9yuy.onrender.com/api/blog/data", {
+  const res = await fetch("https://disenosys-backendv2-9yuy.onrender.com/data", {
     next: { revalidate: 60 },
   });
-
+ console.log("Blog API response:", res);
   if (!res.ok) {
     console.error("Blog API failed:", res.status);
     return [];

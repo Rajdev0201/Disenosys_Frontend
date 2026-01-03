@@ -4,7 +4,7 @@ import Banner from "@/screens/blog/BlogDetails";
 
 
 async function getBlogs() {
-  const res = await fetch("https://disenosys-backendv2-9yuy.onrender.com/api/blog/data", {
+  const res = await fetch("https://disenosys-backendv2-9yuy.onrender.com/data", {
     next: { revalidate: 60 }, // for ISR
   });
   if (!res.ok) {
