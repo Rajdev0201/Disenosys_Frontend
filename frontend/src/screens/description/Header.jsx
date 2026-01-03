@@ -9,7 +9,7 @@ import CourseModal from "@/components/modal/Enroll";
 
 const courseData = [
   {
-    title: "PG Diploma in Plastic BIW Design",
+    title: "PG Diploma in BIW Design",
     price:"1,39,999",
     orginal:"1,99,999"
   },
@@ -32,11 +32,11 @@ const CourseHeader = ({slug}) => {
     };
    const selected = courseData.find((c) => c.title === slug);
      const parsePrice = (price) => {
-  if (!price) return 0;
-  return Number(price.toString().replace(/,/g, ""));
-};
+     if (!price) return 0;
+     return Number(price.toString().replace(/,/g, ""));
+    };
 
-  const getDiscountPercentage = (original, selling) => {
+   const getDiscountPercentage = (original, selling) => {
    const mrp = parsePrice(original);
    const sell = parsePrice(selling)
   if (!original || !selling) return 0;
@@ -70,7 +70,7 @@ const liveDiscount = getDiscountPercentage(selected.orginal,selected.price);
         {/* Right: Pricing card */}
         <div className="bg-white rounded-2xl shadow-md p-6 h-[400px] col-span-12 lg:col-span-4 space-y-3 relative">
           <div className="flex items-center gap-4">
-              <h2 className="text-2xl font-semibold text-[#101359]">₹{selected.price}</h2>
+          <h2 className="text-2xl font-semibold text-[#101359]">₹{selected.price}</h2>
           <p className="line-through text-sm text-[#101359]">₹{selected.orginal}</p>
           </div>
           <p className="text-white bg-[#101359] p-1 rounded-2xl w-20 text-center text-sm">{liveDiscount}% OFF</p>

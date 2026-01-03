@@ -17,7 +17,7 @@ const data = [
   },
   {
     id: "02",
-    tittle: "PG Diploma in Plastic BIW Design",
+    tittle: "PG Diploma in BIW Design",
     tag: "5,957 Students",
     img: BIW,
   },

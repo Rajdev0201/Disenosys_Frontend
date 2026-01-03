@@ -66,6 +66,22 @@ const CourseModal = ({ isOpen, onClose, course, pp }) => {
       );
     }
   };
+ 
+  const recordMRP = "14999";
+
+  const parsePrice = (price) => {
+    if (!price) return 0;
+    return Number(price.toString().replace(/,/g, ""));
+  };
+
+  const getDiscountPercentage = (original, selling) => {
+    const mrp = parsePrice(original);
+    const sell = parsePrice(selling);
+    if (!original || !selling) return 0;
+    return Math.round(((mrp - sell) / mrp) * 100);
+  };
+
+  const recordDiscount = getDiscountPercentage(recordMRP, course?.record);
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 px-4 font-dm-sans">
@@ -297,15 +313,27 @@ const CourseModal = ({ isOpen, onClose, course, pp }) => {
 
               {/* Price */}
               <div className="flex flex-col items-start lg:items-end gap-2">
-                <p className="text-lg md:text-2xl font-bold text-gray-800">
-                  $49.65{" "}
-                  <span className="line-through text-gray-400 text-sm">
-                    $99.99
-                  </span>
-                </p>
-                <span className="bg-[#101359] text-white rounded-2xl px-4 py-1 text-sm font-semibold">
-                  50% OFF
+              
+                <div className="bg-white border-2 border-gray-200 shadow-md px-6 py-3 space-y-2 rounded-2xl relative">
+              <span className="text-xs font-medium text-[#808080]">
+                Recorded Sessions
+              </span>
+              <h2 className="text-2xl font-semibold text-[#101359]">
+                ₹{course?.record}
+              </h2>
+              <p className="line-through text-sm text-[#101359]">
+                ₹{recordMRP}
+              </p>
+              {recordDiscount > 0 && (
+                <span
+                  className="absolute -top-3 right-0 text-xs 
+                     bg-[#101359] text-white px-2 py-1 
+                     rounded-full"
+                >
+                  {recordDiscount}% OFF
                 </span>
+              )}
+            </div>
               </div>
             </div>
 

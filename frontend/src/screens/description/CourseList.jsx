@@ -4,13 +4,13 @@ import React from "react";
 const courseData = [
   {
     slug: "pg-biw",
-    title: "PG Diploma in Plastic BIW Design",
+    title: "PG Diploma in BIW Design",
     courses: [
       "CATIA Foundations for Automotive Designers",
       "Advanced CATIA Surface",
       "Fundamentals Of BIW in Automotive Design",
       "Bracket And Reinforcements",
-      "Automotive Close Volume & Feature Creation",
+       "Surface Remastering for Automotive Designers",
     ],
   },
   {
