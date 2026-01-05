@@ -16,31 +16,47 @@ const BookDemoModal = ({ isOpen, onClose }) => {
   const [phone, setPhone] = useState("");
   const { showToast } = useToast();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const data = { name, email, phone };
-    try {
-      await axios.post(API + "booknowPost", data);
-      showToast(
-        "success",
-        "Your booking was successful!",
-        "We will reach out to you soon"
-      );
-      setName("");
-      setEmail("");
-      setPhone("");
-      onClose();
-    } catch (err) {
-      const errorMessage = err.response?.data?.message;
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-      // Show error toast
-      showToast(
-        "error",
-        errorMessage,
-        "Please check all fields before submitted"
-      );
-    }
+  const bookingData = { name, email, phone };
+
+  const web3Data = {
+    access_key: "6c016ccc-be7f-4c75-be4c-56e74e4671fa",
+    name,
+    email,
+    phone,
+    subject: "New Booking Request",
   };
+
+  try {
+    await Promise.all([
+      axios.post(API + "booknowPost", bookingData),
+      axios.post("https://api.web3forms.com/submit", web3Data),
+    ]);
+
+    showToast(
+      "success",
+      "Your booking was successful!",
+      "We will reach out to you soon"
+    );
+
+    setName("");
+    setEmail("");
+    setPhone("");
+    onClose();
+  } catch (err) {
+    const errorMessage =
+      err.response?.data?.message || "Submission failed";
+
+    showToast(
+      "error",
+      errorMessage,
+      "Please check all fields before submitting"
+    );
+  }
+};
+
 
   return (
     <div className="fixed inset-0 flex items-center backdrop-blur-sm justify-center bg-black/40 z-50">

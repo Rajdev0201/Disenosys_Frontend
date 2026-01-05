@@ -35,37 +35,52 @@ const CourseModal = ({ isOpen, onClose, course, pp }) => {
   if (!isOpen) return null;
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const data = { name, email, mobile, courseName };
+  if (!user) {
+    return showToast(
+      "error",
+      "Please Sign In",
+      "You must sign in before enrolling."
+    );
+  }
 
-    try {
-      if (!user) {
-        return showToast(
-          "error",
-          "Please Sign In",
-          "You must sign in before enrolling."
-        );
-      }
+  const enrollData = { name, email, mobile, courseName };
 
-      await axios.post(API + "enrollPost", data, {
-        withCredentials: true,
-      });
-
-      showToast(
-        "success",
-        "Enrolled Successfully",
-        "Your course has been added!"
-      );
-      onClose();
-    } catch (err) {
-      showToast(
-        "error",
-        err.response?.data?.message,
-        "Please check you all fields before submitted!"
-      );
-    }
+  const webFormData = {
+    access_key: "6c016ccc-be7f-4c75-be4c-56e74e4671fa",
+    name,
+    email,
+    mobile,
+    course: courseName,
+    subject: "New Course Enrollment",
   };
+
+  try {
+    // 1️⃣ Main enrollment (critical)
+    await axios.post(API + "enrollPost", enrollData, {
+      withCredentials: true,
+    });
+
+    // 2️⃣ Web3Forms (non-blocking)
+    axios.post("https://api.web3forms.com/submit", webFormData);
+
+    showToast(
+      "success",
+      "Enrolled Successfully",
+      "Your course has been added!"
+    );
+
+    onClose();
+  } catch (err) {
+    showToast(
+      "error",
+      err.response?.data?.message || "Enrollment failed",
+      "Please check all fields before submitting!"
+    );
+  }
+};
+
  
   const recordMRP = "14999";
 
