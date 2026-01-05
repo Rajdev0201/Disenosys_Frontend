@@ -37,6 +37,7 @@ export default function LayoutWrapper({ children }) {
     "/results",
     "/edit-profile",
     "/reset-password",
+    "/mern-stack"
   ];
   const hideLayout = noLayoutRoutes.includes(pathname);
 
