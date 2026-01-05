@@ -31,8 +31,7 @@ const Auth = () => {
   const nav = useRouter();
   const dispatch = useDispatch();
   const { showToast } = useToast();
-  const { error, logoutmsg} = useSelector((state) => state.user);
-  const [loading ,setLoading] = useState(false);
+  const { error, logoutmsg,loading} = useSelector((state) => state.user);
   const firstTime = useRef(true);
 
   // Show error from backend
@@ -95,8 +94,6 @@ const Auth = () => {
       );
     }
 
-    setLoading(true);
-
     // 5. Prepare data
     const data = { userName, userEmail, password };
 
@@ -122,11 +119,8 @@ const Auth = () => {
         "Enter a valid email to continue."
       );
     }
-
-    setLoading(true);
-
+       
     const data = { userEmail, password };
-    
     dispatch(LoginData(data, nav));
   };
  
