@@ -245,7 +245,7 @@ const Auth = () => {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
-              {loading ?(<p className="text-center text-[#0BA6DC]">Creating your account...</p>)
+              {!loading ?(<p className="text-center text-[#0BA6DC]">Creating your account...</p>)
               :
                 <Button
                 type="button"
@@ -312,7 +312,7 @@ const Auth = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              {loading ?(<p className="text-center text-[#0BA6DC]">Signing in...</p>)
+              {!loading ?(<p className="text-center text-[#0BA6DC]">Signing in...</p>)
               :
                 <Button
                 type="button"
