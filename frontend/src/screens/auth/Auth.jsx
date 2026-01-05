@@ -31,7 +31,7 @@ const Auth = () => {
   const nav = useRouter();
   const dispatch = useDispatch();
   const { showToast } = useToast();
-  const { error, logoutmsg,loading} = useSelector((state) => state.user);
+  const { error, logoutmsg} = useSelector((state) => state.user);
   const firstTime = useRef(true);
 
   // Show error from backend
@@ -245,15 +245,15 @@ const Auth = () => {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
-              {!loading ?(<p className="text-center text-[#0BA6DC]">Creating your account...</p>)
-              :
+              {/* {!loading ?(<p className="text-center text-[#0BA6DC]">Creating your account...</p>)
+              : */}
                 <Button
                 type="button"
                 onClick={handleSignup}
                 className="w-full bg-gradient-to-r from-[#0BA6DC] to-[#45D2FF] text-white py-3 rounded-full font-medium text-base hover:opacity-90 transition hover:cursor-pointer"
                 text="Create an account"
               />
-              }
+              
               <p className="text-xs text-[#6B6B6B] mt-3">
                 By creating an account, you agree to the{" "}
                 <a href="#" className="text-[#0BA6DC] hover:underline">
@@ -312,16 +312,15 @@ const Auth = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              {!loading ?(<p className="text-center text-[#0BA6DC]">Signing in...</p>)
-              :
+              {/* {!loading ?(<p className="text-center text-[#0BA6DC]">Signing in...</p>)
+              : */}
                 <Button
                 type="button"
                 onClick={handleSignin}
                 className="w-full bg-gradient-to-r from-[#0BA6DC] to-[#45D2FF] text-white py-3 rounded-full font-medium text-base hover:opacity-90 transition hover:cursor-pointer"
                 text="Continue"
               />
-              }
-            
+              
               <div className="text-right">
                 <button
                   onClick={() => setMode("forgot")}
