@@ -91,6 +91,13 @@ scholarship */
   background-size: cover;
 }
 
+.mern{
+  background-image: url("../components/assests/mern.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .blog{
    background-image: url("../components/assests/blog.jpg");
   background-position: center;

@@ -63,14 +63,14 @@ const DynamicGreetings = () => {
   const formattedTime = time.toLocaleTimeString();
 
   return (
-    <div className="flex items-center justify-center px-4">
+    <div className="flex items-center justify-center px-4 mt-3 bg-[#101359] py-8">
       <div className="relative flex flex-col mx-auto items-center justify-center rounded-xl border border-gray-700 px-6 py-6 text-center w-full max-w-lg hover:scale-105 transition-transform duration-300 ease-in-out mb-6">
         {/* Top Center Gradient Line */}
         <div className="absolute top-0 left-0 w-full h-1 overflow-hidden rounded-t-xl">
-          <div className="mx-auto w-96 h-full bg-gradient-to-r from-transparent via-purple-500 to-transparent rounded-full" />
+          <div className="mx-auto w-96 h-full bg-gradient-to-r from-transparent via-[#45D2FF] to-transparent rounded-full" />
         </div>
 
-        <h2 className="text-2xl lg:text-5xl font-bold text-purple-400 ">
+        <h2 className="text-2xl lg:text-5xl font-bold text-[#45D2FF]">
           Hey {randomTitle} 👨‍💻
         </h2>
         <p className="text-gray-300 mt-2 text-lg lg:text-xl">{message}</p>
