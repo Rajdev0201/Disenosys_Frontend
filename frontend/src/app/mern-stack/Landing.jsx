@@ -181,7 +181,7 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen font-dm-sans bg-white text-white overflow-hidden">
       {/* Hero Section */}
-      <section className="relative flex flex-col items-start justify-start mern  px-10 py-32 overflow-hidden border-b border-gray-800">
+      <section className="relative flex flex-col items-start justify-start mern px-4 lg:px-10 py-32 overflow-hidden border-b border-gray-800">
         {/* Soft Blue Glow */}
         <div className="grid lg:grid-cols-2">
           <div>
@@ -189,8 +189,8 @@ export default function LandingPage() {
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9 }}
-              className="text-xl md:text-5xl font-extrabold 
-               text-white max-w-4xl"
+              className="text-2xl md:text-5xl font-extrabold 
+               text-white max-w-md lg:max-w-4xl"
             >
               MERN STACK ACCELERATOR PROGRAM
             </motion.h1>
@@ -199,7 +199,7 @@ export default function LandingPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="mt-8 text-md md:text-xl text-white font-bold max-w-3xl"
+              className="mt-8 text-md md:text-xl text-white font-bold max-w-md lg:max-w-3xl"
             >
               From Beginner to{" "}
               <span className="text-white font-semibold">Paid Developer</span>{" "}
@@ -222,19 +222,19 @@ export default function LandingPage() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.9 }}
-              className="mt-12 flex gap-4"
+              className="mt-12 flex flex-col lg:flex-row lg:gap-4"
             >
               <Button
                 text="Apply for the Accelerator"
                 onClick={sendWhatsAppMessage}
-                className="bg-[#45D2FF] hover:bg-sky-400 text-white 
-                 font-extrabold px-10 py-4 rounded-2xl shadow-2xl"
+                className="bg-[#45D2FF] hover:bg-sky-400 text-sm lg:text-lg w-60 lg:w-full text-white 
+                 font-extrabold lg:px-10 py-4 rounded-2xl shadow-2xl"
               />
 
               <Button
                 text="View Curriculum"
                 onClick={() => setOpen(true)}
-                className="border border-[#45D2FF]/40 text-white font-extrabold 
+                className="border border-[#45D2FF]/40 text-white w-60 lg:w-full font-extrabold 
                  px-10 py-4 rounded-2xl hover:bg-[#45D2FF]/10"
               />
             </motion.div>
