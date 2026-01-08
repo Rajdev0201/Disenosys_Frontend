@@ -149,7 +149,7 @@ const Testimonials = () => {
         <Slider {...settings}>
           {data.map((testimonial, index) => (
             <div className="p-4 h-full flex" key={index}>
-              <blockquote className="flex flex-col justify-between bg-white p-6 shadow-sm rounded-lg w-full max-width-[360px] sm:max-w-none min-h-[300px] sm:min-h-[350px] xl:min-h-[320px]">
+              <blockquote className="flex flex-col justify-between bg-white p-6 shadow-sm rounded-lg w-full max-width-[360px] min-h-[300px] sm:min-h-[350px] xl:min-h-[320px]">
                 <article>
                   <div className="flex items-center gap-4">
                     <Image
