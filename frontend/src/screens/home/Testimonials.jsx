@@ -90,7 +90,7 @@ const Testimonials = () => {
   const settings = {
   dots: true,
   infinite: true,
-  slidesToShow: 3,
+  slidesToShow: 1,
   slidesToScroll: 1, // ✅ ALWAYS 1
   autoplay: true,
   speed: 500,
@@ -99,6 +99,12 @@ const Testimonials = () => {
   lazyLoad: "ondemand",
 
   responsive: [
+      {
+      breakpoint: 1440,
+      settings: {
+        slidesToShow: 3,
+      },
+    },
     {
       breakpoint: 1024,
       settings: {

@@ -4,7 +4,7 @@ import { Login, Logout, setUser, SignUp } from "../features/authSlice";
 import { API } from "@/components/utils/constant";
 
 
-export const SignupData = (userData) => async (dispatch) => {
+export const SignupData = (userData,nav) => async (dispatch) => {
     dispatch(SignUp({data:null,loading:true}));
     try {
       const { data } = await axios.post(

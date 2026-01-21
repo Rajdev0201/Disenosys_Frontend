@@ -8,7 +8,11 @@ import { LoginData, SignupData } from "@/components/Redux/actions/auth";
 import Input from "@/components/custom/Input";
 import Button from "@/components/custom/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { API, isStrongPassword, isValidEmail } from "@/components/utils/constant";
+import {
+  API,
+  isStrongPassword,
+  isValidEmail,
+} from "@/components/utils/constant";
 import { useToast } from "@/components/context/ToastContext";
 import { clearMessages } from "@/components/Redux/features/authSlice";
 import axios from "axios";
@@ -18,7 +22,7 @@ const Glogin = dynamic(() => import("@/screens/auth/Glogin"), {
   ssr: false,
 });
 
-const  LinkedInSocialLogin = dynamic(() => import("@/screens/auth/Linkedin"), {
+const LinkedInSocialLogin = dynamic(() => import("@/screens/auth/Linkedin"), {
   ssr: false,
 });
 
@@ -31,25 +35,29 @@ const Auth = () => {
   const nav = useRouter();
   const dispatch = useDispatch();
   const { showToast } = useToast();
-  const { error, logoutmsg} = useSelector((state) => state.user);
+  const { error, logoutmsg } = useSelector((state) => state.user);
   const firstTime = useRef(true);
 
   // Show error from backend
   useEffect(() => {
     if (error && firstTime.current) {
       firstTime.current = false;
-      showToast("error", error, "Please check your account info before continuing.!");
+      showToast(
+        "error",
+        error,
+        "Please check your account info before continuing.!",
+      );
     }
     dispatch(clearMessages());
-  }, [error,dispatch]);
+  }, [error, dispatch]);
 
-   useEffect(() => {
+  useEffect(() => {
     if (logoutmsg && firstTime.current) {
       firstTime.current = false;
       showToast("success", logoutmsg);
     }
     dispatch(clearMessages());
-  }, [logoutmsg,dispatch]);
+  }, [logoutmsg, dispatch]);
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -63,7 +71,7 @@ const Auth = () => {
       return showToast(
         "error",
         "All fields are required",
-        "Please fill out every field before signing up."
+        "Please fill out every field before signing up.",
       );
     }
 
@@ -72,7 +80,7 @@ const Auth = () => {
       return showToast(
         "error",
         "Invalid Email Address",
-        "Enter a valid email to continue."
+        "Enter a valid email to continue.",
       );
     }
 
@@ -81,7 +89,7 @@ const Auth = () => {
       return showToast(
         "error",
         "Weak Password",
-        "Password must be at least 6 characters long."
+        "Password must be at least 6 characters long.",
       );
     }
 
@@ -90,7 +98,7 @@ const Auth = () => {
       return showToast(
         "error",
         "Passwords Do Not Match",
-        "Both passwords must be the same."
+        "Both passwords must be the same.",
       );
     }
 
@@ -98,7 +106,7 @@ const Auth = () => {
     const data = { userName, userEmail, password };
 
     // 6. Dispatch
-    dispatch(SignupData(data));
+    dispatch(SignupData(data, nav));
   };
 
   const handleSignin = async (e) => {
@@ -108,7 +116,7 @@ const Auth = () => {
       return showToast(
         "error",
         "Missing Credentials",
-        "Please enter both email and password."
+        "Please enter both email and password.",
       );
     }
 
@@ -116,28 +124,28 @@ const Auth = () => {
       return showToast(
         "error",
         "Invalid Email Address",
-        "Enter a valid email to continue."
+        "Enter a valid email to continue.",
       );
     }
-       
+
     const data = { userEmail, password };
     dispatch(LoginData(data, nav));
   };
- 
-    const handleForgotshow = async (e) => {
-    e.preventDefault();
 
-    try{
-    const res = await axios.post(API+"user/forgotPassword", {
-      userEmail,
-    });
-    if(res.data.success){
-      showToast("success","forget password","Email sent successfully");
+  const handleForgotshow = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(API + "user/forgotPassword", {
+        userEmail,
+      });
+      if (res.data.success) {
+        showToast("success", "forget password", "Email sent successfully");
+      }
+    } catch (err) {
+      showToast("error", "forget password", err.response?.data?.message);
     }
-  }catch(err){
-      showToast("error","forget password",err.response?.data?.message);
-  }
   };
+
   return (
     <section className="min-h-screen grid lg:grid-cols-2 font-dm-sans">
       {/* Left Section */}
@@ -247,13 +255,13 @@ const Auth = () => {
               </div>
               {/* {!loading ?(<p className="text-center text-[#0BA6DC]">Creating your account...</p>)
               : */}
-                <Button
+              <Button
                 type="button"
                 onClick={handleSignup}
                 className="w-full bg-gradient-to-r from-[#0BA6DC] to-[#45D2FF] text-white py-3 rounded-full font-medium text-base hover:opacity-90 transition hover:cursor-pointer"
                 text="Create an account"
               />
-              
+
               <p className="text-xs text-[#6B6B6B] mt-3">
                 By creating an account, you agree to the{" "}
                 <a href="#" className="text-[#0BA6DC] hover:underline">
@@ -314,13 +322,13 @@ const Auth = () => {
               </div>
               {/* {!loading ?(<p className="text-center text-[#0BA6DC]">Signing in...</p>)
               : */}
-                <Button
+              <Button
                 type="button"
                 onClick={handleSignin}
                 className="w-full bg-gradient-to-r from-[#0BA6DC] to-[#45D2FF] text-white py-3 rounded-full font-medium text-base hover:opacity-90 transition hover:cursor-pointer"
                 text="Continue"
               />
-              
+
               <div className="text-right">
                 <button
                   onClick={() => setMode("forgot")}
