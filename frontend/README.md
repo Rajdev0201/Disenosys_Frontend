@@ -2,6 +2,7 @@
 # 🎓 EduTech Web App
 
 A full-stack MERN-based education platform for managing students, courses, and fees.
+we dont have add it pre-record section now.
 
 ---
 
