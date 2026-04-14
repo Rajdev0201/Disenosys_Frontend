@@ -1,4 +1,4 @@
-import { DM_Sans } from "next/font/google";
+import { DM_Sans, Josefin_Sans, Lexend, Nunito } from "next/font/google";
 import "./globals.css";
 import LayoutWrapper from "@/app/LayoutWrapper.jsx";
 import { Providers } from "@/components/Redux/Provide";
@@ -9,6 +9,18 @@ import { Analytics } from "@vercel/analytics/next";
 const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-dm-sans",
+});
+const josefinSans = Josefin_Sans({
+  subsets: ["latin"],
+  variable: "--font-josefin",
+});
+const nunito = Nunito({
+  subsets: ["latin"],
+  variable: "--font-nunito",
+});
+const lexend = Lexend({
+  subsets: ["latin"],
+  variable: "--font-lexend",
 });
 
 export const metadata = {
@@ -23,7 +35,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${dmSans.variable} antialiased`}>
+      <body
+        className={`${dmSans.variable} ${josefinSans.variable} ${nunito.variable} ${lexend.variable} antialiased`}
+      >
         <ToastProvider>
          <Providers>
         <LayoutWrapper>

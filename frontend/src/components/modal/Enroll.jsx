@@ -12,11 +12,11 @@ import {
 } from "lucide-react";
 import Button from "../custom/Button";
 import Input from "../custom/Input";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useToast } from "../context/ToastContext";
 import axios from "axios";
 import { API } from "../utils/constant";
-import { useRouter } from "next/navigation";
+import { addProductToCart } from "../Redux/actions/addToCart";
 
 const CourseModal = ({ isOpen, onClose, course, pp }) => {
   const [activeTab, setActiveTab] = useState("live"); // live | cart
@@ -26,12 +26,7 @@ const CourseModal = ({ isOpen, onClose, course, pp }) => {
   const user = useSelector((state) => state.user);
   const { showToast } = useToast();
   const courseName = course?.courseName;
-  const nav = useRouter();
-
-  const handleGoUpdatePage = () => {
-    nav.push("/disenosys-update");
-  };
-
+  const dispatch = useDispatch();
   if (!isOpen) return null;
 
   const handleSubmit = async (e) => {
@@ -83,20 +78,42 @@ const CourseModal = ({ isOpen, onClose, course, pp }) => {
 
  
   const recordMRP = "14999";
-
   const parsePrice = (price) => {
     if (!price) return 0;
     return Number(price.toString().replace(/,/g, ""));
   };
-
   const getDiscountPercentage = (original, selling) => {
     const mrp = parsePrice(original);
     const sell = parsePrice(selling);
     if (!original || !selling) return 0;
     return Math.round(((mrp - sell) / mrp) * 100);
   };
-
   const recordDiscount = getDiscountPercentage(recordMRP, course?.record);
+
+  
+const addCart = () => {
+
+    // if (paidCourses.includes(course.courseName)) {
+    //   alert("You have already paid for this course.");
+    //   return; // Exit the function to prevent adding it again
+    // }
+    dispatch(
+      addProductToCart({
+        course: course?._id,
+        // name: courseName,
+        price:course?.record,
+        quantity: 1,
+        img: course?.imagePath,
+        // userName: user.userName,
+      })
+    );
+    showToast( 
+      "success",
+      "Cart",
+      "Add to cart sucessfully."
+    );
+   onClose();
+};
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 px-4 font-dm-sans">
@@ -362,7 +379,7 @@ const CourseModal = ({ isOpen, onClose, course, pp }) => {
               <Button
                 type="submit"
                 text="Add to Cart"
-                onClick={handleGoUpdatePage}
+                onClick={addCart}
                 className="px-6 py-2 hover:cursor-pointer rounded-2xl bg-gradient-to-r w-full from-[#009EE0] to-[#45D2FF] text-white font-medium text-sm md:text-base hover:opacity-90"
               />
             </div>

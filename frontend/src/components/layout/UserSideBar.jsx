@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { Award } from "lucide-react";
 
 import logo from "@/components/assests/white-brand.png";
 import d from "@/components/assests/d.png";
@@ -19,6 +20,7 @@ const UserSideBar = () => {
   const navItems = [
     { name: "Dashboard", href: "/user/dashboard", icon: d },
     { name: "My Course", href: "/user/mycourse", icon: my },
+    { name: "Certificate", href: "/user/certificate", iconComponent: Award },
     { name: "Leader Board", href: "/user/leader-board", icon: t },
     { name: "Quiz", href: "/user/quiz-result", icon: q },
     // { name: "Assessments", href: "/user/assessments", icon: a },
@@ -52,6 +54,7 @@ const UserSideBar = () => {
       <nav className="flex flex-col gap-2 px-2 md:px-4">
         {navItems.map((item) => {
           const active = path === item.href;
+          const IconComponent = item.iconComponent;
 
           return (
             <Link
@@ -71,7 +74,11 @@ const UserSideBar = () => {
                 }
               `}
             >
-              <Image src={item.icon} alt="" className="w-5 h-5" />
+              {IconComponent ? (
+                <IconComponent size={20} className="shrink-0" />
+              ) : (
+                <Image src={item.icon} alt="" className="w-5 h-5" />
+              )}
 
               {/* TEXT FROM MD */}
               <span className="hidden lg:inline lg:text-sm">

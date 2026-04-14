@@ -3,6 +3,31 @@
 
 @theme inline {
    --font-dm-sans: var(--font-dm-sans);
+   --font-josefin: var(--font-josefin);
+   --font-nunito: var(--font-nunito);
+   --font-lexend: var(--font-lexend);
+}
+
+.font-josefin {
+  font-family: var(--font-josefin), sans-serif;
+}
+
+.font-nunito {
+  font-family: var(--font-nunito), sans-serif;
+}
+
+.font-lexend {
+  font-family: var(--font-lexend), sans-serif;
+}
+
+.font-montheavy {
+  font-family: var(--font-lexend), var(--font-dm-sans), sans-serif;
+}
+
+.certificate-bg {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 
@@ -114,6 +139,14 @@ scholarship */
 
 .terms{
   background-image: url("../components/assests/terms.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.certificate-bg{
+  background-image: url("../components/assests/c-c.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

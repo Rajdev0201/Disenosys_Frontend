@@ -3,14 +3,14 @@ import React from "react";
 const Review = () => {
   const reviews = [
     {
-      name: "Jennifer Lawrence",
-      time: "3 days ago",
+      name: "Jennifer",
+      time: "30 days ago",
       text: "Great course, best online learning! Highly recommended...",
       rating: 5,
     },
     {
-      name: "Emma Watson",
-      time: "6 days ago",
+      name: "Rakesh",
+      time: "60 days ago",
       text: "Very comprehensive program with excellent facilities...",
       rating: 5,
     },

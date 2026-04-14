@@ -5,6 +5,7 @@ import {
   Contact,
   LogOut,
   Settings,
+  ShoppingCartIcon,
   User,
   X,
 } from "lucide-react";
@@ -122,6 +123,13 @@ const UserDropDown = ({ userData, className,loading }) => {
                 className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-blue-100"
               >
                 <Contact size={15} /> My Profile
+              </Link>
+
+              <Link
+                href="/cart"
+                className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-blue-100"
+              >
+                <ShoppingCartIcon size={15} /> Cart
               </Link>
 
               <Link

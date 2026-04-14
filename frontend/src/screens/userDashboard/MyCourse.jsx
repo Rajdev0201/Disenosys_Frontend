@@ -1,102 +1,152 @@
-"use client"
+"use client";
 import Image from "next/image";
-import React from "react";
-import car from "@/components/assests/car.jpg";
+import React, { useEffect, useState } from "react";
 import Card from "@/components/custom/Card";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import { API } from "@/components/utils/constant";
+import car from "@/components/assests/car.jpg";
 
 const MyCourse = () => {
-  const router = useRouter();
-  return (
-    <section>
-      <div className="px-4 lg:px-12 font-dm-sans h-screen">
-        {/* Heading */}
-        <h1 className="font-medium text-lg lg:text-2xl text-[#333333] mb-2 mt-4">
-          My Courses
-        </h1>
-        <p className="font-medium text-xs lg:text-sm text-[#808080] mb-6">
-          Access all your active and completed courses in one place
+const router = useRouter();
+
+const [data, setData] = useState([]);
+const [loading, setLoading] = useState(false);
+const [activeType, setActiveType] = useState("online");
+const nav = useRouter();
+
+const fetchCourses = async (type) => {
+setLoading(true);
+
+try {
+  const endpoint =
+    type === "online"
+      ? `${API}online-paid-dashboard`
+      : `${API}offline-paid-dashboard`;
+
+  const res = await axios.get(endpoint, {
+    withCredentials: true,
+  });
+
+  setData(res?.data || []);
+} catch (err) {
+  console.log(err);
+  setData([]);
+} finally {
+  setLoading(false);
+}
+};
+
+const handleTypeChange = (type) => {
+setActiveType(type);
+fetchCourses(type);
+};
+
+useEffect(() => {
+fetchCourses("online");
+}, []);
+
+  const goToVideoSection = (slug) => {
+    nav.push(`/pre-record/${encodeURIComponent(slug)}`);
+  };
+
+
+return ( 
+<section> <div className="px-4 lg:px-12 font-dm-sans min-h-screen">
+{/* Heading */} <h1 className="font-medium text-lg lg:text-2xl text-[#333333] mb-2 mt-4">
+My Courses </h1> <p className="font-medium text-xs lg:text-sm text-[#808080] mb-6">
+Access all your active and completed courses in one place </p>
+
+    {/* Buttons */}
+    <div className="flex gap-4 mb-6">
+      <button
+        onClick={() => handleTypeChange("online")}
+        className={`px-5 py-2 rounded-md text-sm font-medium transition ${
+          activeType === "online"
+            ? "bg-[#45D2FF] text-white"
+            : "bg-gray-100 text-gray-700 hover:cursor-pointer"
+        }`}
+      >
+        Online Paid
+      </button>
+
+      <button
+        onClick={() => handleTypeChange("offline")}
+        className={`px-5 py-2 rounded-md text-sm font-medium transition ${
+          activeType === "offline"
+            ? "bg-[#45D2FF] text-white"
+            : "bg-gray-100 text-gray-700 hover:cursor-pointer"
+        }`}
+      >
+        Offline Paid
+      </button>
+    </div>
+
+    {/* Loading */}
+    {loading && (
+      <div className="text-center text-gray-500 mt-10">Loading courses...</div>
+    )}
+
+    {/* Empty State */}
+    {!loading && data?.length === 0 && (
+      <div className="flex flex-col items-center justify-center border border-dashed border-gray-300 rounded-lg p-10 mt-6">
+        <Image
+          src={car}
+          alt="empty"
+          width={120}
+          height={120}
+          className="opacity-40"
+        />
+        <h3 className="mt-4 text-lg font-semibold text-gray-700">
+          No Courses Found
+        </h3>
+        <p className="text-sm text-gray-500 mt-1">
+          You haven't enrolled in any{" "}
+          {activeType === "online" ? "online" : "offline"} paid courses yet.
         </p>
+      </div>
+    )}
 
-        {/* courses */}
+    {/* Course List */}
+    {!loading && data?.getCourseData?.length > 0 && (
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        { data?.getCourseData?.map((course, index) => (
+          <div
+            key={index}
+            className="shadow-md border rounded-md border-gray-200 p-4 cursor-pointer hover:shadow-lg transition"
+            onClick={() => goToVideoSection(course.courseName)}
+          >
+            <img
+              src={course?.imagePath || car}
+              alt="course-image"
+              width={200}
+              height={200}
+              className="object-cover rounded-md mb-3"
+            />
 
-        <Card className="lg:col-span-5 relative overflow-hidden">
-          {/* Locked Overlay */}
-          <div className="absolute inset-0 bg-black/70 z-10 flex flex-col items-center justify-center text-center px-6">
-            <span className="text-yellow-400 text-sm font-semibold mb-2">
-              🎥 Live courses are active right now
+            <span className="inline-block bg-[#45D2FF] text-white text-xs font-medium px-3 py-1 rounded-full mb-2">
+              {course?.category || "Course"}
             </span>
 
-            <h3 className="text-white text-lg font-bold mb-2">
-              Pre-Recorded Course Getting Ready
-            </h3>
+            <h2 className="text-[#161439] text-md font-bold leading-snug mb-1">
+              {course?.courseName}
+            </h2>
 
-            <p className="text-gray-300 text-sm mb-4">
-              Meanwhile, explore our{" "}
-              <span className="text-[#45D2FF] font-semibold">
-                Live Online Courses
-              </span>{" "}
-              and start learning today.
+            <p className="text-sm font-medium text-[#8C8C8C] leading-snug">
+              {course?.description?.slice(0, 90)}...
             </p>
 
-            {/* Fake XP Progress */}
-            <div className="w-full bg-gray-700 rounded-full h-2 mb-4">
-              <div className="bg-[#45D2FF] h-2 rounded-full w-[35%]"></div>
-            </div>
-
-            <span className="text-xs text-gray-400 mb-4">
-              Preparation Progress: 35%
-            </span>
-
-            {/* CTA */}
-            <button
-              onClick={() => router.push("/course")}
-              className="bg-[#45D2FF] hover:bg-[#2bbde8] text-white px-6 py-2 rounded-full text-sm font-semibold shadow-lg transition"
-            >
-              ▶ Choose Live Program
-            </button>
-
-            <span className="text-xs text-gray-400 mt-3">
-              🎥 Learn live with industry experts
+            <span className="font-medium text-sm text-[#45D2FF] mt-2 inline-block">
+              Happy Learning!
             </span>
           </div>
-
-          {/* Existing Content (blurred background) */}
-          <div className="blur-sm">
-            <h4 className="text-sm text-[#333333] font-semibold mb-8">
-              Recent enrolled course
-            </h4>
-
-            <div className="grid lg:grid-cols-2 gap-4 items-start">
-              <Image
-                src={car}
-                alt="course-image"
-                width={200}
-                height={150}
-                className="object-cover rounded-md shadow-sm"
-              />
-
-              <div className="flex flex-col space-y-2">
-                <span className="inline-block bg-[#45D2FF] text-white text-xs font-medium px-3 py-1 rounded-full w-fit">
-                  Plastic Trims
-                </span>
-                <h2 className="text-[#161439] text-md font-bold leading-snug">
-                  Automotive Close Volume & Feature Creation
-                </h2>
-                <p className="text-sm font-medium text-[#8C8C8C] leading-snug">
-                  Close volume refers to the space within a vehicle that is
-                  enclosed by its exterior surfaces.
-                </p>
-                <span className="font-medium text-sm text-[#45D2FF]">
-                  Happy Learning!
-                </span>
-              </div>
-            </div>
-          </div>
-        </Card>
+        ))}
       </div>
-    </section>
-  );
+    )}
+  </div>
+</section>
+
+);
 };
 
 export default MyCourse;

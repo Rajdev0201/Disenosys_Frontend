@@ -37,9 +37,18 @@ export default function LayoutWrapper({ children }) {
     "/results",
     "/edit-profile",
     "/reset-password",
-    "/mern-stack"
+    "/mern-stack",
+    "/pre-record",
+    "/exam",
+    "/quiz",
+    "/user/certificate",
   ];
-  const hideLayout = noLayoutRoutes.includes(pathname);
+  const noLayoutRoutePrefixes = ["/pre-record"];
+  const hideLayout =
+    noLayoutRoutes.includes(pathname) ||
+    noLayoutRoutePrefixes.some((prefix) =>
+      pathname?.startsWith(`${prefix}/`)
+    );
 
   //  useEffect(() => {
   //   setLaunchActive(isLaunchActive());
