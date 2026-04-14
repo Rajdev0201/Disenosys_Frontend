@@ -25,6 +25,18 @@ const parseProgressDoc = (resData) => {
   return resData?.progress || resData?.courseProgress || resData || null;
 };
 
+const parseQuizMeta = (doc) => { 
+  const rawScore = Number(doc?.quizScore);
+  const rawCorrect = Number(doc?.quizCorrectCount ?? doc?.correctAnswersCount);
+  const rawTotal = Number(doc?.quizTotalQuestions ?? doc?.totalQuizQuestions);
+
+  return {
+    percent: Number.isFinite(rawScore) ? clampPercent(rawScore) : null,
+    correctCount: Number.isFinite(rawCorrect) ? Math.max(0, Math.round(rawCorrect)) : null,
+    totalQuestions: Number.isFinite(rawTotal) ? Math.max(0, Math.round(rawTotal)) : null,
+  };
+};
+
 export default function CertificatePage() {
   const searchParams = useSearchParams();
   const requestedCourse = String(searchParams.get("course") || "").trim();
@@ -94,11 +106,8 @@ export default function CertificatePage() {
           const progressPercent = clampPercent(
             doc?.progressPercent ?? doc?.percent ?? doc?.coursePercent
           );
-          const rawQuizScore = Number(doc?.quizScore);
-          const quizScorePercent =
-            doc?.quizScore == null || !Number.isFinite(rawQuizScore)
-              ? null
-              : clampPercent(rawQuizScore);
+          const quizMeta = parseQuizMeta(doc);
+          const quizScorePercent = quizMeta.percent;
           const unlocked = progressPercent >= 100 && quizScorePercent != null && quizScorePercent > 0;
 
           return {
@@ -106,6 +115,8 @@ export default function CertificatePage() {
             progressDoc: doc,
             progressPercent,
             quizScorePercent,
+            quizCorrectCount: quizMeta.correctCount,
+            quizTotalQuestions: quizMeta.totalQuestions,
             unlocked,
             completionDate:
               doc?.clientUpdatedAt ||
@@ -298,6 +309,8 @@ export default function CertificatePage() {
                       <span className="font-semibold text-[#182073]">
                         {course.quizScorePercent == null
                           ? "Not completed"
+                          : course.quizTotalQuestions
+                          ? `${course.quizCorrectCount}/${course.quizTotalQuestions} (${course.quizScorePercent}%)`
                           : `${course.quizScorePercent}%`}
                       </span>
                     </div>

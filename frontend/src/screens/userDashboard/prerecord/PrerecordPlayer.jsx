@@ -176,6 +176,8 @@ export default function PrerecordPlayer({ courseSlug }) {
       bestScorePercent: Number(score),
       attempts: null,
       lastScorePercent: Number(score),
+      correctCount: Number(progressDoc?.quizCorrectCount || 0),
+      totalQuestions: Number(progressDoc?.quizTotalQuestions || 0),
     };
   }, [progressDoc]);
   const certificateUnlocked = progressDoc?.quizScore != null;
@@ -451,16 +453,31 @@ export default function PrerecordPlayer({ courseSlug }) {
     (result) => {
       saveProgress({
         quizScore: Number(result.scorePercent || 0),
+        quizCorrectCount: Number(result.correct || 0),
+        quizTotalQuestions: Number(result.total || 0),
         lastLectureId:
           selectedLecture?.completionKey ||
           selectedLecture?.url ||
           selectedLecture?.id ||
           null,
       });
+      if (result?.isPerfectScore) {
+        showToast(
+          "success",
+          "Quiz submitted",
+          `Your score is ${Number(result.scorePercent || 0)}% (${Number(
+            result.correct || 0
+          )}/${Number(result.total || 0)}). It is now saved to your dashboard.`
+        );
+        return;
+      }
+
       showToast(
-        "success",
-        "Quiz submitted",
-        `Your score is ${Number(result.scorePercent || 0)}%. It is now saved to your dashboard.`
+        "warning",
+        "Quiz checked",
+        `You got ${Number(result.correct || 0)}/${Number(
+          result.total || 0
+        )} correct. Review the popup for correct answers.`
       );
     },
     [

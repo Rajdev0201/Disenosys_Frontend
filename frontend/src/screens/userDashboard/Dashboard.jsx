@@ -47,6 +47,18 @@ const Dashboard = () => {
       return resData?.progress || resData?.courseProgress || resData || null;
     };
 
+    const parseQuizMeta = (doc) => {
+      const rawScore = Number(doc?.quizScore);
+      const rawCorrect = Number(doc?.quizCorrectCount ?? doc?.correctAnswersCount);
+      const rawTotal = Number(doc?.quizTotalQuestions ?? doc?.totalQuizQuestions);
+
+      return {
+        percent: Number.isFinite(rawScore) ? clampPercent(rawScore) : null,
+        correctCount: Number.isFinite(rawCorrect) ? Math.max(0, Math.round(rawCorrect)) : null,
+        totalQuestions: Number.isFinite(rawTotal) ? Math.max(0, Math.round(rawTotal)) : null,
+      };
+    };
+
     const loadDashboardCourses = async () => {
       setCoursesLoaded(false);
       setCoursesLoading(true);
@@ -103,11 +115,14 @@ const Dashboard = () => {
           if (!courseName) return;
           if (result.status !== "fulfilled") return;
         const doc = parseProgressDoc(result.value?.data);
+        const quizMeta = parseQuizMeta(doc);
         nextProgress[courseName] = {
           percent: clampPercent(
             doc?.progressPercent ?? doc?.percent ?? doc?.coursePercent
           ),
-          quizScorePercent: clampPercent(doc?.quizScore),
+          quizScorePercent: quizMeta.percent,
+          quizCorrectCount: quizMeta.correctCount,
+          quizTotalQuestions: quizMeta.totalQuestions,
           updatedAtMs: Math.max(
             toMs(doc?.updatedAt),
             toMs(doc?.lastUpdatedAt),
@@ -190,6 +205,16 @@ const Dashboard = () => {
       Math.round(Number(progressByCourseName?.[activeCourseName]?.quizScorePercent) || 0)
     )
    );
+   const activeQuizCorrectCount = Number(
+    progressByCourseName?.[activeCourseName]?.quizCorrectCount
+   );
+   const activeQuizTotalQuestions = Number(
+    progressByCourseName?.[activeCourseName]?.quizTotalQuestions
+   );
+   const hasQuizBreakdown =
+    Number.isFinite(activeQuizCorrectCount) &&
+    Number.isFinite(activeQuizTotalQuestions) &&
+    activeQuizTotalQuestions > 0;
    const hasCourses = Boolean(activeCourse);
    const showLoading = Boolean(data) && !coursesLoaded;
    const showEmptyState = coursesLoaded && !coursesLoading && !hasCourses;
@@ -463,7 +488,11 @@ const Dashboard = () => {
               <p className="flex gap-2 items-center font-semibold text-sm text-[#333333]">
                 <BriefcaseBusiness size={20} color="#45D2FF" /> Quiz Score :{" "}
                 <span className="text-[#808080] text-xs">
-                  {coursesLoading ? "..." : `${activeQuizPercent}%`}
+                  {coursesLoading
+                    ? "..."
+                    : hasQuizBreakdown
+                    ? `${activeQuizCorrectCount}/${activeQuizTotalQuestions} (${activeQuizPercent}%)`
+                    : `${activeQuizPercent}%`}
                 </span>
               </p>
             </div>

@@ -24,12 +24,78 @@ function getOptions(question) {
   return [];
 }
 
+function normalizeText(value) {
+  return String(value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+}
+
 function getCorrectValue(question) {
   if (question?.correctIndex != null) return Number(question.correctIndex);
   if (question?.correctAnswer != null) return question.correctAnswer;
   if (question?.answer != null) return question.answer;
   if (question?.correct != null) return question.correct;
   return null;
+}
+
+function isAnswerCorrect(question, chosen) {
+  const correctAnswer = getCorrectValue(question);
+  if (chosen == null || correctAnswer == null) return false;
+
+  const options = getOptions(question);
+  const normalizedChosen = normalizeText(chosen);
+  const normalizedCorrect = normalizeText(correctAnswer);
+
+  if (String(chosen) === String(correctAnswer)) return true;
+  if (normalizedChosen && normalizedChosen === normalizedCorrect) return true;
+
+  const chosenOption = options.find(
+    (opt) =>
+      String(opt.value) === String(chosen) ||
+      normalizeText(opt.label) === normalizedChosen
+  );
+  const correctOption = options.find(
+    (opt) =>
+      String(opt.value) === String(correctAnswer) ||
+      normalizeText(opt.label) === normalizedCorrect
+  );
+
+  if (chosenOption && correctOption) {
+    return (
+      String(chosenOption.value) === String(correctOption.value) ||
+      normalizeText(chosenOption.label) === normalizeText(correctOption.label)
+    );
+  }
+
+  if (typeof correctAnswer === "number" && options[correctAnswer]) {
+    const indexedOption = options[correctAnswer];
+    return (
+      String(indexedOption.value) === String(chosen) ||
+      normalizeText(indexedOption.label) === normalizedChosen
+    );
+  }
+
+  return false;
+}
+
+function getCorrectAnswerLabel(question) {
+  const correctAnswer = getCorrectValue(question);
+  const options = getOptions(question);
+  const normalizedCorrect = normalizeText(correctAnswer);
+
+  if (typeof correctAnswer === "number" && options[correctAnswer]) {
+    return options[correctAnswer].label;
+  }
+
+  const match = options.find(
+    (opt) =>
+      String(opt.value) === String(correctAnswer) ||
+      normalizeText(opt.label) === normalizedCorrect
+  );
+
+  if (match) return match.label;
+  return String(correctAnswer ?? "");
 }
 
 export default function QuizPanel({
@@ -51,31 +117,41 @@ export default function QuizPanel({
 
   const [answers, setAnswers] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [resultPopup, setResultPopup] = useState(null);
 
   useEffect(() => {
     setAnswers({});
     setSubmitted(false);
+    setResultPopup(null);
   }, [title, questionsSource]);
 
   const computed = useMemo(() => {
     if (!submitted) return null;
     let correct = 0;
+    const incorrectAnswers = [];
     for (let idx = 0; idx < questions.length; idx += 1) {
       const q = questions[idx];
       const qId = getQuestionId(q, idx);
       const chosen = answers[qId];
-      const correctAnswer = getCorrectValue(q);
-      if (
-        chosen != null &&
-        correctAnswer != null &&
-        String(chosen) === String(correctAnswer)
-      ) {
+      if (isAnswerCorrect(q, chosen)) {
         correct += 1;
+      } else {
+        incorrectAnswers.push({
+          questionNumber: idx + 1,
+          questionText: q.question || q.prompt || "Question",
+          correctAnswer: getCorrectAnswerLabel(q),
+        });
       }
     }
     const total = questions.length || 0;
     const scorePercent = total ? Math.round((correct / total) * 100) : 0;
-    return { correct, total, scorePercent };
+    return {
+      correct,
+      total,
+      scorePercent,
+      incorrectAnswers,
+      isPerfectScore: total > 0 && correct === total,
+    };
   }, [answers, questions, submitted]);
 
   if (locked) {
@@ -122,22 +198,32 @@ export default function QuizPanel({
   const submit = () => {
     setSubmitted(true);
     let correct = 0;
+    const incorrectAnswers = [];
     for (let idx = 0; idx < questions.length; idx += 1) {
       const q = questions[idx];
       const qId = getQuestionId(q, idx);
       const chosen = answers[qId];
-      const correctAnswer = getCorrectValue(q);
-      if (
-        chosen != null &&
-        correctAnswer != null &&
-        String(chosen) === String(correctAnswer)
-      ) {
+      if (isAnswerCorrect(q, chosen)) {
         correct += 1;
+      } else {
+        incorrectAnswers.push({
+          questionNumber: idx + 1,
+          questionText: q.question || q.prompt || "Question",
+          correctAnswer: getCorrectAnswerLabel(q),
+        });
       }
     }
     const total = questions.length || 0;
     const scorePercent = total ? Math.round((correct / total) * 100) : 0;
-    onSubmitAttempt?.({ correct, total, scorePercent });
+    const result = {
+      correct,
+      total,
+      scorePercent,
+      incorrectAnswers,
+      isPerfectScore: total > 0 && correct === total,
+    };
+    setResultPopup(result);
+    onSubmitAttempt?.(result);
   };
 
   return (
@@ -231,6 +317,53 @@ export default function QuizPanel({
           </div>
         )}
       </div>
+
+      {resultPopup && !resultPopup.isPerfectScore && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/55 px-4">
+          <div className="w-full max-w-2xl rounded-[28px] bg-white p-6 shadow-2xl">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <div className="text-lg font-semibold text-[#182073]">
+                  Quiz checked
+                </div>
+                <p className="mt-1 text-sm text-[#5F6C80]">
+                  You got {resultPopup.correct} out of {resultPopup.total} correct.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setResultPopup(null)}
+                className="rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-50"
+              >
+                Close
+              </button>
+            </div>
+
+            <div className="mt-4 rounded-2xl bg-[#F5FAFF] px-4 py-3 text-sm text-[#24364D]">
+              Quiz score: <span className="font-semibold">{resultPopup.scorePercent}%</span>
+            </div>
+
+            <div className="mt-4 max-h-[320px] space-y-3 overflow-auto pr-1">
+              {resultPopup.incorrectAnswers.map((item) => (
+                <div
+                  key={`${item.questionNumber}-${item.questionText}`}
+                  className="rounded-2xl border border-[#E2E8F0] bg-[#FCFEFF] p-4"
+                >
+                  <div className="text-sm font-semibold text-[#182073]">
+                    Q{item.questionNumber}. {item.questionText}
+                  </div>
+                  <div className="mt-2 text-sm text-[#5F6C80]">
+                    Correct answer is{" "}
+                    <span className="font-semibold text-[#182073]">
+                      {item.correctAnswer || "Not available"}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
