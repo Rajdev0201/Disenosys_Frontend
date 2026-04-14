@@ -1,5 +1,5 @@
 
-export const API = "http://localhost:8000/" //https://disenosys-backendv2-9yuy.onrender.com/
+export const API = "https://disenosys-backendv2-9yuy.onrender.com/"
 
 
 export const isValidEmail = (email) => {
