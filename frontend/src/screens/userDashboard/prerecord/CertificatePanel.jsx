@@ -231,9 +231,10 @@ export default function CertificatePanel({
           <input
             name="name"
             value={singleStudent.name}
-            onChange={handleInputChange}
-            className="w-full rounded-2xl border border-[#CBD5E1] bg-white px-4 py-3 text-sm text-[#0F172A] outline-none focus:border-[#0BA6DC] focus:ring-2 focus:ring-[#0BA6DC]/10"
-            placeholder="Learner name"
+            // onChange={handleInputChange}
+             disabled
+            className="w-full cursor-not-allowed rounded-2xl border border-[#CBD5E1] bg-white px-4 py-3 text-sm text-[#0F172A] outline-none focus:border-[#0BA6DC] focus:ring-2 focus:ring-[#0BA6DC]/10"
+            // placeholder="Learner name"
           />
         </label>
 
@@ -243,9 +244,10 @@ export default function CertificatePanel({
             name="email"
             type="email"
             value={singleStudent.email}
-            onChange={handleInputChange}
-            className="w-full rounded-2xl border border-[#CBD5E1] bg-white px-4 py-3 text-sm text-[#0F172A] outline-none focus:border-[#0BA6DC] focus:ring-2 focus:ring-[#0BA6DC]/10"
-            placeholder="student@example.com"
+            // onChange={handleInputChange}
+             disabled
+            className="w-full cursor-not-allowed rounded-2xl border border-[#CBD5E1] bg-white px-4 py-3 text-sm text-[#0F172A] outline-none focus:border-[#0BA6DC] focus:ring-2 focus:ring-[#0BA6DC]/10"
+            // placeholder="student@example.com"
           />
         </label>
 
@@ -274,7 +276,7 @@ export default function CertificatePanel({
           <button
             type="submit"
             disabled={downloading}
-            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[linear-gradient(135deg,#009EE0_0%,#45D2FF_100%)] px-5 py-3 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(11,166,220,0.24)] transition hover:opacity-95 disabled:opacity-60"
+            className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-2xl bg-[linear-gradient(135deg,#009EE0_0%,#45D2FF_100%)] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:opacity-95 disabled:opacity-60"
           >
             <Download size={16} />
             {downloading ? "Sending..." : "Generate & Send"}

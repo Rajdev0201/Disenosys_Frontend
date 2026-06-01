@@ -4,13 +4,15 @@ import Button from '@/components/custom/Button';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 const Quicktest = () => {
    const router = useRouter();
-   const {data,error} = ((state) => state.user)
+    const user = useSelector((state) => state.user.data); 
+  
    const {showToast} = useToast();
    const onClick = () => {
-       if (!data) {
+       if (!user) {
         return showToast(
           "error",
           "Please Sign In",
